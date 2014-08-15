@@ -6,7 +6,7 @@
 
 package br.com.getup.susyFashion.dao;
 
-import br.com.getup.susyFashion.modelo.Cliente;
+import br.com.getup.susyFashion.modelo.Folha;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,12 +16,12 @@ import javax.persistence.PersistenceContext;
  * @author E.Wellington
  */
 @Stateless
-public class ClienteDao extends AbstratoDao<Cliente>{
+public class FolhaDao extends AbstratoDao<Folha> implements FolhaDaoIF{
     
-    @PersistenceContext(unitName = "susyFashion")
+     @PersistenceContext(unitName = "susyFashion")
     private EntityManager em;
 
-    public ClienteDao(Class<Cliente> entityClass) {
+    public FolhaDao(Class<Folha> entityClass) {
         super(entityClass);
     }
     

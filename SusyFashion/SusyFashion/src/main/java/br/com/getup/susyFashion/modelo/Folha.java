@@ -29,7 +29,7 @@ public class Folha implements Identificavel{
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "folha_id")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     
     private String descricao;
@@ -40,7 +40,7 @@ public class Folha implements Identificavel{
     private Status status;
     
     @ManyToOne
-    @JoinColumn(name = "id_folha")
+    @JoinColumn(name = "talao_id")
     private Talao talao;
 
     public Long getId() {

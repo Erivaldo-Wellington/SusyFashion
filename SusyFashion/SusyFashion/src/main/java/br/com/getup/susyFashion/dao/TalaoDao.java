@@ -6,8 +6,7 @@
 
 package br.com.getup.susyFashion.dao;
 
-import br.com.getup.susyFashion.modelo.Cliente;
-import javax.ejb.Stateless;
+import br.com.getup.susyFashion.modelo.Talao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,13 +14,12 @@ import javax.persistence.PersistenceContext;
  *
  * @author E.Wellington
  */
-@Stateless
-public class ClienteDao extends AbstratoDao<Cliente>{
+public class TalaoDao extends AbstratoDao<Talao> implements TalaoDaoIF{
     
-    @PersistenceContext(unitName = "susyFashion")
+     @PersistenceContext(unitName = "susyFashion")
     private EntityManager em;
 
-    public ClienteDao(Class<Cliente> entityClass) {
+    public TalaoDao(Class<Talao> entityClass) {
         super(entityClass);
     }
     
@@ -29,5 +27,4 @@ public class ClienteDao extends AbstratoDao<Cliente>{
     public EntityManager getEntityManager() {
         return em;
     }
-    
 }
