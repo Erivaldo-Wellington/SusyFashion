@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package br.com.getup.susyFashion.dao;
+package br.com.getup.susyFashion.service;
 
 /**
  *
  * @author E.Wellington
  */
-public interface TalaoDaoIF extends DaoIF{
+public interface TalaoServiceIF extends ServiceIF{
     
 }

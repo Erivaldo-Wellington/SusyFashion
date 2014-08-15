@@ -6,8 +6,8 @@
 
 package br.com.getup.susyFashion.service;
 
-import br.com.getup.susyFashion.dao.ClienteDaoIF;
 import br.com.getup.susyFashion.dao.DaoIF;
+import br.com.getup.susyFashion.dao.TalaoDaoIF;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -16,15 +16,13 @@ import javax.inject.Inject;
  * @author E.Wellington
  */
 @Stateless
-public class ClienteService extends AbstratoService implements ClienteServiceIF{
+public class TalaoService extends AbstratoService implements TalaoServiceIF{
     
     @Inject
-    private ClienteDaoIF dao;
+    private TalaoDaoIF dao;
     
     @Override
     public DaoIF getDao() {
         return dao;
     }
-    
-    
 }
