@@ -7,8 +7,8 @@
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
-import com.sun.corba.se.spi.ior.Identifiable;
-import java.util.ArrayList;
+
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -16,32 +16,42 @@ import javax.persistence.EntityManager;
  * @author E.Wellington
  */
 public abstract class AbstratoDao<T extends Identificavel> implements DaoIF{
+    
+     private Class<T> entityClass;
 
-    @Override
-    public void criar(Identifiable entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AbstratoDao(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
     
     public abstract EntityManager getEntityManager();
     
     @Override
-    public void editar(Identifiable entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvar(Identificavel entidade) {
+        getEntityManager().persist(entidade);
+    }
+    
+    
+    @Override
+    public void atualizar(Identificavel entidade) {
+        getEntityManager().refresh(entidade);
     }
 
     @Override
-    public void remover(Identifiable entidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remover(Identificavel entidade) {
+        getEntityManager().remove(entidade);
     }
 
     @Override
-    public Identifiable buscarPorId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Identificavel buscarPorId(Long id) {
+        return (Identificavel)getEntityManager().find(entityClass, id);
     }
 
     @Override
-    public ArrayList<Identifiable> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Identificavel> buscarTodos() {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+               
     }
     
 }

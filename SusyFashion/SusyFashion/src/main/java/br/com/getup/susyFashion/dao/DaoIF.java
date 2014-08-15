@@ -6,8 +6,9 @@
 
 package br.com.getup.susyFashion.dao;
 
-import com.sun.corba.se.spi.ior.Identifiable;
-import java.util.ArrayList;
+import br.com.getup.susyFashion.modelo.Identificavel;
+
+import java.util.List;
 
 /**
  *
@@ -15,14 +16,14 @@ import java.util.ArrayList;
  */
 public interface DaoIF {
     
-    void criar(Identifiable entidade);
+    void salvar(Identificavel entidade);
     
-    void editar(Identifiable entidade);
+    void atualizar(Identificavel entidade);
     
-    void remover(Identifiable entidade);
+    void remover(Identificavel entidade);
     
-    Identifiable buscarPorId(Long id);
+    Identificavel buscarPorId(Long id);
     
-    ArrayList<Identifiable> buscarTodos();
+    List<Identificavel> buscarTodos();
     
 }

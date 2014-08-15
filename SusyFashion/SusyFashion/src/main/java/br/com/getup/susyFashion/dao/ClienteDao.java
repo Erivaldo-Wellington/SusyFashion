@@ -18,6 +18,10 @@ public class ClienteDao extends AbstratoDao<Cliente>{
     
     @PersistenceContext(name = "susyFashion")
     private EntityManager em;
+
+    public ClienteDao(Class<Cliente> entityClass) {
+        super(entityClass);
+    }
     
     @Override
     public EntityManager getEntityManager() {
