@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
@@ -16,14 +10,14 @@ import java.util.List;
  */
 public interface DaoIF {
     
-    void salvar(Identificavel entidade);
+    public void salvar(Identificavel entidade);
     
-    void atualizar(Identificavel entidade);
+    public void atualizar(Identificavel entidade);
     
-    void remover(Identificavel entidade);
+    public void remover(Identificavel entidade);
     
-    Identificavel buscarPorId(Long id);
+    public Identificavel buscarPorId(Long id);
     
-    List<Identificavel> buscarTodos();
+    public List<Identificavel> buscarTodos();
     
 }
