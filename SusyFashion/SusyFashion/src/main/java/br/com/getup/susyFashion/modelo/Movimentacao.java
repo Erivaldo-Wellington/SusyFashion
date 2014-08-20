@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.com.getup.susyFashion.modelo;
 
 import java.math.BigDecimal;
@@ -28,28 +22,29 @@ public abstract class Movimentacao implements Identificavel{
     private Long id;
     
     @Temporal(TemporalType.DATE)
-    private Date data;
+    private Date dataMovimentacao;
     
     @Min(value = 0)
     private BigDecimal valor;
     
     private String descricao;
-    
         
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataMovimentacao() {
+        return dataMovimentacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataMovimentacao(Date dataMovimentacao) {
+        this.dataMovimentacao = dataMovimentacao;
     }
 
     public BigDecimal getValor() {
@@ -67,6 +62,5 @@ public abstract class Movimentacao implements Identificavel{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    
+     
 }

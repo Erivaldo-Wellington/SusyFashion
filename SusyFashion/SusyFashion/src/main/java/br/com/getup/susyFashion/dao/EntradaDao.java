@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.com.getup.susyFashion.dao;
 
@@ -22,8 +17,8 @@ public class EntradaDao extends AbstratoDao<Entrada> implements EntradaDaoIF{
      @PersistenceContext(unitName = "susyFashion")
     private EntityManager em;
 
-    public EntradaDao(Class<Entrada> entityClass) {
-        super(entityClass);
+    public EntradaDao() {
+        super(Entrada.class);
     }
     
     @Override
