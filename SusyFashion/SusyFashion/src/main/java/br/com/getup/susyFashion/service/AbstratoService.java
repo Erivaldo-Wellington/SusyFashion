@@ -16,8 +16,8 @@ import javax.inject.Inject;
  * @author E.Wellington
  */
 public abstract class AbstratoService implements ServiceIF{
-    @Inject
-    private DaoIF dao;
+    
+   
             
     public abstract DaoIF getDao();
     

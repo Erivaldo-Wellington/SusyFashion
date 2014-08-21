@@ -10,15 +10,15 @@ import javax.persistence.PersistenceContext;
  * @author E.Wellington
  */
 @Stateless
-public class TalaoDao extends AbstratoDao<Talao> implements TalaoDaoIF{
-    
-     @PersistenceContext(unitName = "susyFashion")
+public class TalaoDao extends AbstratoDao<Talao> implements TalaoDaoIF {
+
+    @PersistenceContext(unitName = "susyFashion")
     private EntityManager em;
 
     public TalaoDao() {
         super(Talao.class);
     }
-    
+
     @Override
     public EntityManager getEntityManager() {
         return em;
