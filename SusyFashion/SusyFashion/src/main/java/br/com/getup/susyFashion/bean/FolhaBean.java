@@ -1,7 +1,7 @@
 package br.com.getup.susyFashion.bean;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
-import br.com.getup.susyFashion.service.ClienteServiceIF;
+import br.com.getup.susyFashion.service.FolhaServiceIF;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -11,49 +11,49 @@ import javax.inject.Inject;
  *
  * @author Elisângela
  */
-public class ClienteBean implements BeanIF {
-
-    @Inject
-    private ClienteServiceIF clienteServiceIF;
-
-    public ClienteBean() {
-    }
+public class FolhaBean implements BeanIF {
     
+    @Inject
+    private FolhaServiceIF folhaServiceIF;
+
+    public FolhaBean() {
+    }
+
     @Override
     public void salvar(Identificavel entidade) {
-        clienteServiceIF.salvar(entidade);
+        folhaServiceIF.salvar(entidade);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
     }
-     
+
     @Override
     public void atualizar(Identificavel entidade) {
-        clienteServiceIF.atualizar(entidade);
+        folhaServiceIF.atualizar(entidade);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                FacesMessage.SEVERITY_INFO, "Atualizaçao Efetuada com Sucesso", ""));
+                FacesMessage.SEVERITY_INFO, "Atualização Efetuada com Sucesso", ""));
     }
 
     @Override
     public void remover(Identificavel entidade) {
-        clienteServiceIF.remover(entidade);
+        folhaServiceIF.remover(entidade);
     }
 
     @Override
     public Identificavel buscarPorId(Long id) {
-        return clienteServiceIF.buscarPorId(id);
+        return folhaServiceIF.buscarPorId(id);
     }
 
     @Override
     public List<Identificavel> buscarTodos() {
-        return clienteServiceIF.buscarTodos();
+        return folhaServiceIF.buscarTodos();
     }
 
-    public ClienteServiceIF getClienteServiceIF() {
-        return clienteServiceIF;
+    public FolhaServiceIF getFolhaServiceIF() {
+        return folhaServiceIF;
     }
 
-    public void setClienteServiceIF(ClienteServiceIF clienteServiceIF) {
-        this.clienteServiceIF = clienteServiceIF;
+    public void setFolhaServiceIF(FolhaServiceIF folhaServiceIF) {
+        this.folhaServiceIF = folhaServiceIF;
     }
     
 }
