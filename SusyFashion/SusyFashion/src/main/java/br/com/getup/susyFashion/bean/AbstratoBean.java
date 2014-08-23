@@ -21,6 +21,7 @@ public abstract class AbstratoBean implements BeanIF{
     
     public AbstratoBean() {
     }
+    
     public abstract ServiceIF getService();
     
     public abstract Identificavel getEntidade();
@@ -55,7 +56,8 @@ public abstract class AbstratoBean implements BeanIF{
 //    public List<Identificavel> buscarTodos() {
 //        return getService().buscarTodos();
 //    }
-
+    
+    
    
     
     
