@@ -51,6 +51,12 @@ public class Talao implements Identificavel {
     public void setListaFolhas(List<Folha> listaFolhas) {
         this.listaFolhas = listaFolhas;
     }
+
+    @Override
+    public String toString() {
+        return "T: "+getNumeroTalao();
+    }
+    
     
     
 }

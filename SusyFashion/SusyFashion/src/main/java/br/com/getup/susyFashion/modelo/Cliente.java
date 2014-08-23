@@ -26,7 +26,13 @@ public class Cliente extends Pessoa{
     public void setListaFolhas(List<Folha> listaFolhas) {
         this.listaFolhas = listaFolhas;
     }
- 
+
+    public Cliente() {
+        endereco = new Endereco();
+    
+    }
+    
+    
  
  
  

@@ -86,5 +86,10 @@ public class Folha implements Identificavel{
     public void setTalao(Talao talao) {
         this.talao = talao;
     }
-     
+
+    @Override
+    public String toString() {
+        return "F: "+ getNumeroFolha();
+    }
+    
 }

@@ -8,6 +8,7 @@ package br.com.getup.susyFashion.bean;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.service.ServiceIF;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -47,15 +48,18 @@ public abstract class AbstratoBean implements BeanIF{
                 FacesMessage.SEVERITY_INFO, "Removido com Sucesso", ""));
     }
 
+    @Override
+    public List<Identificavel> buscarTodos() {
+        return getService().buscarTodos();
+    }
+    
+    
+      
 //    @Override
 //    public Identificavel buscarPorId(Long id) {
 //        return getService().buscarPorId(id);
 //    }
 //
-//    @Override
-//    public List<Identificavel> buscarTodos() {
-//        return getService().buscarTodos();
-//    }
     
     
    

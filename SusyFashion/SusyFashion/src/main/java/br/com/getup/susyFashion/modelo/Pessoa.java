@@ -25,7 +25,14 @@ public class Pessoa implements Identificavel{
     private String rg;
    
     @Embedded
-    private Endereco endereco;
+    protected Endereco endereco;
+
+    public Pessoa() {
+        
+    
+    }
+    
+   
     
     @Override
     public Long getId() {

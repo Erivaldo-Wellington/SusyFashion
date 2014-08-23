@@ -4,9 +4,12 @@ import br.com.getup.susyFashion.modelo.Cliente;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.service.ClienteServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -18,7 +21,9 @@ public class ClienteBean extends AbstratoBean {
 
     @Inject
     private ClienteServiceIF serviceClienteIF;
-
+    
+    
+    
     public ClienteBean() {
     }
 
@@ -34,5 +39,23 @@ public class ClienteBean extends AbstratoBean {
         }
         return (Cliente) entidade;
     }
+    
+    public void visulizarClientes() {
+        RequestContext.getCurrentInstance().openDialog("cliente\busca");
+    }
+    
+    
+  
 
+   
+
+    
+    
+    
+    
+    
+    
+    
+            
+    
 }

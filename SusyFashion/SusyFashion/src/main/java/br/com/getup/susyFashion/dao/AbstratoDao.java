@@ -41,12 +41,12 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF{
         return (Identificavel)getEntityManager().find(entityClass, id);
     }
 
-    @Override
-    public List<Identificavel> buscarTodos() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
-               
-    }
+//    @Override
+//    public List<Identificavel> buscarTodos() {
+//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        cq.select(cq.from(entityClass));
+//        return getEntityManager().createQuery(cq).getResultList();
+//               
+//    }
     
 }

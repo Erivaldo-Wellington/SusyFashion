@@ -17,15 +17,62 @@ and open the template in the editor.
             <h:form id="NovoClienteForm" title="Novo Cliente">
                 <p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
-                    <h:panelGrid columns="2" cellpadding="4">
+                    <h:panelGrid columns="6" cellpadding="4">
                         <p:outputLabel value="#{bundle.Name}" for="nome" />
                         <p:inputText id="nome" value="#{clienteBean.entidade.nome}" title="#{bundle.Name}"  required="true" requiredMessage="#{bundle.NameRequired}"/>
+                        
                         <p:outputLabel value="#{bundle.CPF}" for="cpf" />
                         <p:inputMask id="cpf" value="#{clienteBean.entidade.cpf}" title="#{bundle.CPF}" mask="999.999.999-99"/>
+                        
                         <p:outputLabel value="#{bundle.RG}" for="rg" />
                         <p:inputText id="rg" value="#{clienteBean.entidade.rg}" title="#{bundle.RG}"/>
-                        <p:outputLabel value="#{bundle.Address}" for="endereco" />
-                        <p:inputText id="endereco" value="#{clienteBean.entidade.endereco}" title="#{bundle.Address}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressStreet}" for="rua" />
+                        <p:inputText id="rua" value="#{clienteBean.entidade.endereco.rua}" title="#{bundle.AddressStreet}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressNumber}" for="numero" />
+                        <p:inputText id="numero" value="#{clienteBean.entidade.endereco.numero}" title="#{bundle.AddressNumber}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressNeighborhood}" for="bairro" />
+                        <p:inputText id="bairro" value="#{clienteBean.entidade.endereco.bairro}" title="#{bundle.AddressNeighborhood}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressCity}" for="cep" />
+                        <p:inputText id="cep" value="#{clienteBean.entidade.endereco.cidade}" title="#{bundle.AddressCity}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressCep}" for="cep" />
+                        <p:inputText id="cidade" value="#{clienteBean.entidade.endereco.cep}" title="#{bundle.AddressCep}"/>
+                        
+                        <p:outputLabel value="#{bundle.AddressState}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{clienteBean.entidade.endereco.estado}"  effect="fold" >
+                            <f:selectItem itemLabel="Acre" itemValue="AC"  />
+                            <f:selectItem itemLabel="Alagoas" itemValue="AL"  />
+                            <f:selectItem itemLabel="Amapá" itemValue="AP"  />
+                            <f:selectItem itemLabel="Amazonas" itemValue="AM"  />
+                            <f:selectItem itemLabel="Bahia" itemValue="BA"  />
+                            <f:selectItem itemLabel="Ceará" itemValue="CE"  />
+                            <f:selectItem itemLabel="Distrito Federal" itemValue="DF"  />
+                            <f:selectItem itemLabel="Espírito Santo" itemValue="ES"  />
+                            <f:selectItem itemLabel="Goiás" itemValue="GO"  />
+                            <f:selectItem itemLabel="Maranhão" itemValue="MA"  />
+                            <f:selectItem itemLabel="Mato Grosso" itemValue="MT"  />
+                            <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS"  />
+                            <f:selectItem itemLabel="Minas Gerais" itemValue="MG"  />
+                            <f:selectItem itemLabel="Pará" itemValue="PA"  />
+                            <f:selectItem itemLabel="Paraíba" itemValue="PB"  />
+                            <f:selectItem itemLabel="Paraná" itemValue="PR"  />
+                            <f:selectItem itemLabel="Pernambuco" itemValue="PE"  />
+                            <f:selectItem itemLabel="Piauí" itemValue="PI"  />
+                            <f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ"  />
+                            <f:selectItem itemLabel="Rio Grande do Norte" itemValue="RN"  />
+                            <f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS"  />
+                            <f:selectItem itemLabel="Rondônia" itemValue="RO"  />
+                            <f:selectItem itemLabel="Roraima" itemValue="RR"  />
+                            <f:selectItem itemLabel="Santa Catarina" itemValue="SC"  />
+                            <f:selectItem itemLabel="São Paulo" itemValue="SP"  />
+                            <f:selectItem itemLabel="Sergipe" itemValue="SE"  />
+                            <f:selectItem itemLabel="Tocantins" itemValue="TO"  />
+
+                        </p:selectOneMenu>
                        
                     </h:panelGrid>
                     <p:commandButton actionListener="#{clienteBean.salvar()}" value="#{bundle.Save}" update="@form"/>

@@ -1,7 +1,9 @@
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Folha;
+import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.modelo.Saida;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,4 +29,8 @@ public class SaidaDao extends AbstratoDao<Saida> implements SaidaDaoIF{
         return em;
     }
     
+    @Override
+    public List<Identificavel> buscarTodos() {
+       return getEntityManager().createQuery("From Saida s").getResultList();
+    }
 }
