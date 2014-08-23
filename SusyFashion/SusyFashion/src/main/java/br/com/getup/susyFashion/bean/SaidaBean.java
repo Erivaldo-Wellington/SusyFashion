@@ -1,11 +1,8 @@
 package br.com.getup.susyFashion.bean;
 
-import br.com.getup.susyFashion.modelo.Identificavel;
+import br.com.getup.susyFashion.modelo.Saida;
 import br.com.getup.susyFashion.service.SaidaServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
-import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -25,5 +22,11 @@ public class SaidaBean extends AbstratoBean {
       return saidaServiceIF;
     }
     
-    
+     @Override
+    public Saida getEntidade() {
+        if (entidade == null) {
+            entidade = new Saida();
+        }
+        return (Saida) entidade;
+    }
 }

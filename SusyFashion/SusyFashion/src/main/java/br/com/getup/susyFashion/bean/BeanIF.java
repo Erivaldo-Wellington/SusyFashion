@@ -1,12 +1,17 @@
 package br.com.getup.susyFashion.bean;
 
-import br.com.getup.susyFashion.dao.DaoIF;
-
 /**
  *
  * @author Elisângela
  */
-public interface BeanIF extends DaoIF {
+public interface BeanIF {
+    
+    
+    void salvar();
+    
+    void atualizar();
+    
+    void remover();
     
     
     

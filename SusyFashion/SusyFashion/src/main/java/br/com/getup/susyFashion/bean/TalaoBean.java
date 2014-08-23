@@ -1,11 +1,8 @@
 package br.com.getup.susyFashion.bean;
 
-import br.com.getup.susyFashion.modelo.Identificavel;
+import br.com.getup.susyFashion.modelo.Talao;
 import br.com.getup.susyFashion.service.ServiceIF;
 import br.com.getup.susyFashion.service.TalaoServiceIF;
-import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -24,7 +21,14 @@ public class TalaoBean extends AbstratoBean {
     public ServiceIF getService() {
         return talaoServiceIF;
     }
-
+    
+     @Override
+    public Talao getEntidade() {
+        if (entidade == null) {
+            entidade = new Talao();
+        }
+        return (Talao) entidade;
+    }
     
     
 }
