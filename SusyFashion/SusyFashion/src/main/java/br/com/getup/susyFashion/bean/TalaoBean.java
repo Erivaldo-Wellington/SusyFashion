@@ -11,7 +11,7 @@ import javax.inject.Named;
  *
  * @author Elisângela
  */
-@Named
+@Named (value = "talaoBean")
 @RequestScoped
 public class TalaoBean extends AbstratoBean {
     
@@ -34,5 +34,5 @@ public class TalaoBean extends AbstratoBean {
         return (Talao) entidade;
     }
     
-    
+   
 }
