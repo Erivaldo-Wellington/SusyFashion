@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/susy_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="content">
+        <p:panel id="nova_entrada_form" header="Cadastro de Entradas" style="padding: 20px;">
+            <h:form id="NovaEntradaForm" title="Nova Entrada">
+                <p:growl id="msgNovaEntrada" showDetail="true" sticky="true"/>
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" cellpadding="4">
+                        <p:outputLabel value="#{bundle.Value}" for="valor" />
+                        <p:inputMask  id="valor"  mask="9?9999999999" placeHolder="" value="#{entradaBean.entidade.valor}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.ValeuRequired}"/>
+                        <p:outputLabel value="#{bundle.Date}" for="data" />
+                        <p:calendar id="data" value="#{entradaBean.entidade.dataMovimentacao}" title="#{bundle.Date}" navigator="true" required="true" >
+                       </p:calendar>   
+                        <p:outputLabel value="#{bundle.Description}" for="descricao"/>
+                        <p:inputTextarea  id="descricao" value="#{entradaBean.entidade.descricao}" title="#{bundle.Description}" />
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{entradaBean.salvar()}" value="#{bundle.Save}" update="@form"/>
+                    <p:commandButton value="#{bundle.Cancel}"/>
+                </h:panelGroup>
+            </h:form>
+        </p:panel>
+
+
+    </ui:define>
+
+</ui:composition>
