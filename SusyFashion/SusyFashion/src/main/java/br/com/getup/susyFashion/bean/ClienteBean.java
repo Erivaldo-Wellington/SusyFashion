@@ -7,9 +7,9 @@ import br.com.getup.susyFashion.service.ServiceIF;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ClienteBean extends AbstratoBean {
     @Inject
     private ClienteServiceIF serviceClienteIF;
     
-    
+    private List<SelectItem> selectItens;
     
     public ClienteBean() {
     }
@@ -39,23 +39,25 @@ public class ClienteBean extends AbstratoBean {
         }
         return (Cliente) entidade;
     }
+   
     
-    public void visulizarClientes() {
-        RequestContext.getCurrentInstance().openDialog("cliente\busca");
+     public  List<SelectItem> getSelectItens() {
+        List<Identificavel> buscarTodos = buscarTodos();
+        
+        selectItens = new ArrayList<>();
+        
+//        selectItens = (SelectItem[]) buscarTodos.toArray();
+        
+         for (Identificavel identificavel : buscarTodos) {
+             
+            selectItens.add(new SelectItem(identificavel));
+         }
+            
+        
+        
+        
+        return selectItens;
     }
     
-    
-  
-
    
-
-    
-    
-    
-    
-    
-    
-    
-            
-    
 }

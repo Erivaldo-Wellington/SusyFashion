@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/susy_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="content">
+        <p:panel id="nova_folha_form" header="Cadastro de Folhas" style="padding: 20px;">
+            <h:form id="NovaFolhaForm" title="Novo folha">
+                <p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="4" cellpadding="4">
+
+                        <p:outputLabel value="#{bundle.Number}" for="numero" />
+                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
+
+                        <p:outputLabel value="#{bundle.Client}" for="clienteId"/>
+                        <p:selectOneMenu id="clienteId" value="#{folhaBean.entidade.cliente}"  required="true" requiredMessage="#{bundle.ClientRequired}" converter="generico">
+                            <f:selectItems  value="#{clienteBean.selectItens}" itemValue="#{folhaBean.entidade.cliente}"/>
+                        
+                        </p:selectOneMenu>
+                         
+                        
+                        <p:commandButton action="#{folhaBean.salvar}" value="#{bundle.Save}" update="@form"/>
+                        <p:commandButton value="#{bundle.Cancel}"/>
+                   
+                    </h:panelGrid>
+                </h:panelGroup>
+            </h:form>
+        </p:panel>
+
+
+    </ui:define>
+
+</ui:composition>

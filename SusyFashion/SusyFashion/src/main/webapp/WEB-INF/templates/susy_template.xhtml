@@ -34,18 +34,19 @@
         <h:form style="padding: 1px;margin-top: 5px">
             <p:menubar>
                 <p:submenu label="#{bundle.Clients}">
-                    <p:menuitem value="#{bundle.Create}" action="/cliente/novo.xhtml"/>
+                    <p:menuitem value="#{bundle.Create}" outcome="/cliente/novo"/>
                     <p:menuitem value="#{bundle.Search}"/>
                 </p:submenu>
                 
-                <p:submenu label="#{bundle.Bead}">
-                    <p:menuitem value="#{bundle.Create}" action="/talao/novo.xhtml"/>
+                <p:submenu label="#{bundle.Cadastres}">
+                    <p:menuitem value="#{bundle.NewBead}" outcome="/talao/novo"/>
+                    <p:menuitem value="#{bundle.NewSheet}" outcome="/folha/nova"/>
                 </p:submenu> 
                 
                 <p:submenu label="#{bundle.Cash}">
                     
-                    <p:menuitem value="#{bundle.NewEntry}" action="/movimentacoes/novaEntrada.xhtml"/>
-                    <p:menuitem value="#{bundle.NewOutput}"  action="/movimentacoes/novaSaida.xhtml"/>
+                    <p:menuitem value="#{bundle.NewEntry}" outcome="/movimentacoes/novaEntrada"/>
+                    <p:menuitem value="#{bundle.NewOutput}"  outcome="/movimentacoes/novaSaida"/>
                     <p:menuitem value="#{bundle.InCash}"/>
                     <p:menuitem value="#{bundle.OutCash}"/>
                     <p:menuitem value="#{bundle.CashFlow}"/>  

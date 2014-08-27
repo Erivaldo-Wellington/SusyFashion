@@ -31,6 +31,11 @@ public class Cliente extends Pessoa{
         endereco = new Endereco();
     
     }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
     
     
  
