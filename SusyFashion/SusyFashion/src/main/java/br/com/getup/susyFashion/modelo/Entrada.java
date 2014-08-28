@@ -12,4 +12,6 @@ import javax.persistence.Table;
 @Table(name = "tbl_entrada")
 public class Entrada extends Movimentacao{
     
+    
+    
 }

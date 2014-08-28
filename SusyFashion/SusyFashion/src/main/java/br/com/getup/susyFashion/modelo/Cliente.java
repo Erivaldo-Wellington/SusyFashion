@@ -36,9 +36,28 @@ public class Cliente extends Pessoa{
     public String toString() {
         return getNome();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        return true;
+    }
     
     
  
+    
  
  
 }

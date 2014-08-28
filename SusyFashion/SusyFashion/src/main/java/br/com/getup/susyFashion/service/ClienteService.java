@@ -8,6 +8,8 @@ package br.com.getup.susyFashion.service;
 
 import br.com.getup.susyFashion.dao.ClienteDaoIF;
 import br.com.getup.susyFashion.dao.DaoIF;
+import br.com.getup.susyFashion.modelo.Identificavel;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,9 +24,15 @@ public class ClienteService extends AbstratoService implements ClienteServiceIF{
     private ClienteDaoIF dao;
     
     @Override
-    public DaoIF getDao() {
+    public ClienteDaoIF getDao() {
         return dao;
     }
+
+    @Override
+    public List<Identificavel> findByNameLike(String query) {
+        return getDao().findByNameLike(query);
+    }
+    
     
     
     

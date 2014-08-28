@@ -19,5 +19,7 @@ public interface DaoIF {
     public Identificavel buscarPorId(Long id);
     
     public List<Identificavel> buscarTodos();
+
+    
     
 }

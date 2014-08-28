@@ -7,9 +7,9 @@ import br.com.getup.susyFashion.service.ServiceIF;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.component.media.player.RealPlayer;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ClienteBean extends AbstratoBean {
     @Inject
     private ClienteServiceIF serviceClienteIF;
     
-    private List<SelectItem> selectItens;
+    private List<Cliente> clientes;
     
     public ClienteBean() {
     }
@@ -41,23 +41,48 @@ public class ClienteBean extends AbstratoBean {
     }
    
     
-     public  List<SelectItem> getSelectItens() {
-        List<Identificavel> buscarTodos = buscarTodos();
+    public List<Identificavel> complete(String query){
+//        List<Identificavel> clientes1 = getClientes();
+//        System.out.println("lista clientes 1 criada");
+//        List<String> sugestoes = new ArrayList<>();
+//        for (Identificavel c : clientes1) {
+//            System.out.println("entrou no loop");
+//            Cliente clienteAux = (Cliente) c;
+//            if(clienteAux.getNome().contains(query)){
+//                System.out.println("contém alguma coisa");
+//                sugestoes.add(clienteAux.getNome());
+//            }
+//        }
+//        return sugestoes;
+        return  this.serviceClienteIF.findByNameLike(query);
         
-        selectItens = new ArrayList<>();
         
-//        selectItens = (SelectItem[]) buscarTodos.toArray();
+       
         
-         for (Identificavel identificavel : buscarTodos) {
-             
-            selectItens.add(new SelectItem(identificavel));
-         }
-            
-        
-        
-        
-        return selectItens;
     }
+
+    public List<Identificavel> getClientes() {
+        return buscarTodos();
+    }
+    
+    public List<String> lista(String query){
+        List<String> l = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+            l.add(query + i);
+            }
+        return l;
+    }
+   
+    private String t;
+
+    public void setT(String t) {
+        this.t = t;
+    }
+
+    public String getT() {
+        return t;
+    }
+    
     
    
 }

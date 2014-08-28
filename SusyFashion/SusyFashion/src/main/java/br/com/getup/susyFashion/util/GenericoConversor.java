@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.getup.susyFashion.util;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
@@ -13,12 +12,14 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 /**
  *
  * @author E.Wellington
  */
 @FacesConverter("generico")
-public class GenericoConversor  implements Converter,Serializable{
+public class GenericoConversor implements Converter, Serializable {
+
     @Override
     public Object getAsObject(FacesContext ctx, UIComponent component, String value) {
         if (value != null) {
@@ -36,15 +37,17 @@ public class GenericoConversor  implements Converter,Serializable{
             Identificavel entity = (Identificavel) value;
 
             // adiciona item como atributo do componente
-            this.addAttribute(component, entity);
-            
-            Long codigo = entity.getId();
-            if (codigo != null) {
-                return String.valueOf(codigo);
-            }
-        }
+            if (entity.getId() != null) {
+                this.addAttribute(component, entity);
+                Long codigo = entity.getId();
+                if (codigo != null) {
+                    return String.valueOf(codigo);
+                }
 
-        return (String) value;
+            }
+            return (String) value;
+        }
+        return "";
     }
 
     protected void addAttribute(UIComponent component, Identificavel o) {
@@ -57,4 +60,3 @@ public class GenericoConversor  implements Converter,Serializable{
     }
 
 }
-

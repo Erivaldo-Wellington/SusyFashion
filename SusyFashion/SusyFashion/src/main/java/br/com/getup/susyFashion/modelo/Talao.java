@@ -1,6 +1,7 @@
 package br.com.getup.susyFashion.modelo;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -56,7 +57,25 @@ public class Talao implements Identificavel {
     public String toString() {
         return "T: "+getNumeroTalao();
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Talao other = (Talao) obj;
+        return true;
+    }
+
     
     
 }

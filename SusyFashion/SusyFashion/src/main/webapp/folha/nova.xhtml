@@ -17,21 +17,37 @@ and open the template in the editor.
             <h:form id="NovaFolhaForm" title="Novo folha">
                 <p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
-                    <h:panelGrid columns="4" cellpadding="4">
+                    <h:panelGrid columns="2" cellpadding="4">
 
                         <p:outputLabel value="#{bundle.Number}" for="numero" />
-                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
-
-                        <p:outputLabel value="#{bundle.Client}" for="clienteId"/>
-                        <p:selectOneMenu id="clienteId" value="#{folhaBean.entidade.cliente}"  required="true" requiredMessage="#{bundle.ClientRequired}" converter="generico">
-                            <f:selectItems  value="#{clienteBean.selectItens}" itemValue="#{folhaBean.entidade.cliente}"/>
+                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{folhaBean.entidade.numeroFolha}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
+                        
+                        <p:outputLabel value="#{bundle.Status}" for="status"/>
+                        <p:selectOneMenu id="status" value="#{folhaBean.entidade.status}" effect="fold">
+                            <f:selectItem itemLabel="#{bundle.Open}" itemValue="aberta" />
+                            <f:selectItem itemLabel="#{bundle.Closed}" itemValue="fechada"/>
                         
                         </p:selectOneMenu>
-                         
                         
+                        
+                        <p:outputLabel value="#{bundle.Bead}" for="talaoId"/>
+                        <p:selectOneMenu id="talaoId" value="#{folhaBean.entidade.talao}"  required="true" requiredMessage="#{bundle.BeadRequired}" converter="generico">
+                            <f:selectItems  value="#{talaoBean.listaTalao}" itemValue="#{folhaBean.entidade.talao}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.Client}" />  
+                        <p:autoComplete  value="#{folhaBean.entidade.cliente}"
+                                         completeMethod="#{clienteBean.complete}"
+                                         var="cliente"
+                                         itemLabel="#{folhaBean.entidade.cliente.nome}"
+                                         itemValue="#{cliente}"
+                                         converter="generico">
+
+                        </p:autoComplete>  
+
                         <p:commandButton action="#{folhaBean.salvar}" value="#{bundle.Save}" update="@form"/>
                         <p:commandButton value="#{bundle.Cancel}"/>
-                   
+
                     </h:panelGrid>
                 </h:panelGroup>
             </h:form>

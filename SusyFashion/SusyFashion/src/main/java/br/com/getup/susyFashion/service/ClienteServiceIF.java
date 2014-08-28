@@ -6,11 +6,14 @@
 
 package br.com.getup.susyFashion.service;
 
+import br.com.getup.susyFashion.modelo.Identificavel;
+import java.util.List;
+
 /**
  *
  * @author E.Wellington
  */
 public interface ClienteServiceIF extends ServiceIF{
     
-    
+    List<Identificavel> findByNameLike(String query);
 }

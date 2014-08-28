@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,6 +30,12 @@ public class ClienteDao extends AbstratoDao<Cliente> implements ClienteDaoIF{
     @Override
     public List<Identificavel> buscarTodos() {
        return getEntityManager().createQuery("From Cliente c").getResultList();
+    }
+
+    @Override
+    public List<Identificavel> findByNameLike(String query) {
+        Query createQuery = getEntityManager().createQuery("From Cliente c where c.nome like " + query);
+        return createQuery.getResultList();
     }
     
     

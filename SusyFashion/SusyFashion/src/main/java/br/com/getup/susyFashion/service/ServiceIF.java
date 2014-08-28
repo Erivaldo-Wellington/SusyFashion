@@ -25,6 +25,7 @@ public interface ServiceIF extends Serializable{
     Identificavel buscarPorId(Long id);
     
     List<Identificavel> buscarTodos();
-    
+
+     
     
 }
