@@ -30,8 +30,7 @@ public class Folha implements Identificavel{
     
     private Long numeroFolha;
     
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
     
     @ManyToOne
     @JoinColumn(name = "talao_id")
@@ -71,11 +70,11 @@ public class Folha implements Identificavel{
         this.numeroFolha = numeroFolha;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

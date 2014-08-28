@@ -44,34 +44,7 @@ and open the template in the editor.
                         
                         <p:outputLabel value="#{bundle.AddressState}" for="estado" />
                         <p:selectOneMenu id="estado" value="#{clienteBean.entidade.endereco.estado}"  effect="fold" >
-                            <f:selectItem itemLabel="Acre" itemValue="AC"  />
-                            <f:selectItem itemLabel="Alagoas" itemValue="AL"  />
-                            <f:selectItem itemLabel="Amapá" itemValue="AP"  />
-                            <f:selectItem itemLabel="Amazonas" itemValue="AM"  />
-                            <f:selectItem itemLabel="Bahia" itemValue="BA"  />
-                            <f:selectItem itemLabel="Ceará" itemValue="CE"  />
-                            <f:selectItem itemLabel="Distrito Federal" itemValue="DF"  />
-                            <f:selectItem itemLabel="Espírito Santo" itemValue="ES"  />
-                            <f:selectItem itemLabel="Goiás" itemValue="GO"  />
-                            <f:selectItem itemLabel="Maranhão" itemValue="MA"  />
-                            <f:selectItem itemLabel="Mato Grosso" itemValue="MT"  />
-                            <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS"  />
-                            <f:selectItem itemLabel="Minas Gerais" itemValue="MG"  />
-                            <f:selectItem itemLabel="Pará" itemValue="PA"  />
-                            <f:selectItem itemLabel="Paraíba" itemValue="PB"  />
-                            <f:selectItem itemLabel="Paraná" itemValue="PR"  />
-                            <f:selectItem itemLabel="Pernambuco" itemValue="PE"  />
-                            <f:selectItem itemLabel="Piauí" itemValue="PI"  />
-                            <f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ"  />
-                            <f:selectItem itemLabel="Rio Grande do Norte" itemValue="RN"  />
-                            <f:selectItem itemLabel="Rio Grande do Sul" itemValue="RS"  />
-                            <f:selectItem itemLabel="Rondônia" itemValue="RO"  />
-                            <f:selectItem itemLabel="Roraima" itemValue="RR"  />
-                            <f:selectItem itemLabel="Santa Catarina" itemValue="SC"  />
-                            <f:selectItem itemLabel="São Paulo" itemValue="SP"  />
-                            <f:selectItem itemLabel="Sergipe" itemValue="SE"  />
-                            <f:selectItem itemLabel="Tocantins" itemValue="TO"  />
-
+                            <f:selectItems itemLabel="#{estado}" itemValue="#{estado}" value="#{clienteBean.estados}" />
                         </p:selectOneMenu>
                        
                     </h:panelGrid>

@@ -22,7 +22,7 @@ public class TalaoService extends AbstratoService implements TalaoServiceIF{
     private TalaoDaoIF dao;
     
     @Override
-    public DaoIF getDao() {
+    public TalaoDaoIF getDao() {
         return dao;
     }
 }

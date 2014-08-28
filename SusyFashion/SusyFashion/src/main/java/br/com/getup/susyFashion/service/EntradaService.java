@@ -21,7 +21,7 @@ public class EntradaService extends AbstratoService implements EntradaServiceIF 
     private EntradaDaoIF dao;
 
     @Override
-    public DaoIF getDao() {
+    public EntradaDaoIF getDao() {
         return dao;
     }
 }

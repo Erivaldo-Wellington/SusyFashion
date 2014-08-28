@@ -55,7 +55,7 @@ public class Talao implements Identificavel {
 
     @Override
     public String toString() {
-        return "T: "+getNumeroTalao();
+        return "T"+getNumeroTalao();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class SaidaService extends AbstratoService implements SaidaServiceIF {
     private SaidaDaoIF dao;
 
     @Override
-    public DaoIF getDao() {
+    public SaidaDaoIF getDao() {
         return dao;
     }
 }

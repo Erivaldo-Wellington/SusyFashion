@@ -5,7 +5,6 @@
  */
 package br.com.getup.susyFashion.service;
 
-import br.com.getup.susyFashion.dao.DaoIF;
 import br.com.getup.susyFashion.dao.FolhaDaoIF;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,7 +20,7 @@ public class FolhaService extends AbstratoService implements FolhaServiceIF {
     private FolhaDaoIF dao;
 
     @Override
-    public DaoIF getDao() {
+    public FolhaDaoIF getDao() {
         return dao;
     }
 

@@ -1,10 +1,12 @@
 package br.com.getup.susyFashion.bean;
 
+import br.com.getup.susyFashion.enumeration.Estados;
 import br.com.getup.susyFashion.modelo.Cliente;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.service.ClienteServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -24,7 +26,10 @@ public class ClienteBean extends AbstratoBean {
     
     private List<Cliente> clientes;
     
+    private List<Estados> estados;
+    
     public ClienteBean() {
+        this.estados = Arrays.asList(Estados.values());        
     }
 
     @Override
@@ -40,6 +45,23 @@ public class ClienteBean extends AbstratoBean {
         return (Cliente) entidade;
     }
    
+    public List<Cliente> getClientes() {
+        
+        List<Identificavel> buscarTodos = buscarTodos();
+        List<Cliente> clientesLista = new ArrayList<>();
+        for (Identificavel identificavel : buscarTodos) {
+            Cliente clienteAux = (Cliente) identificavel;
+            clientesLista.add(clienteAux);
+        }
+        return clientesLista;
+    }
+
+    public List<Estados> getEstados() {
+        return estados;
+    }
+    
+    
+    
     
     public List<Identificavel> complete(String query){
 //        List<Identificavel> clientes1 = getClientes();
@@ -61,10 +83,10 @@ public class ClienteBean extends AbstratoBean {
         
     }
 
-    public List<Identificavel> getClientes() {
-        return buscarTodos();
-    }
     
+    
+    
+    // TESTE PARA  O AUTOCOMPLETE
     public List<String> lista(String query){
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < 10; i++) {
