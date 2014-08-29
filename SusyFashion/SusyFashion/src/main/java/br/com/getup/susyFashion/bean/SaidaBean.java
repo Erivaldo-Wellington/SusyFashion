@@ -1,5 +1,6 @@
 package br.com.getup.susyFashion.bean;
 
+import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.modelo.Saida;
 import br.com.getup.susyFashion.service.SaidaServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
@@ -32,5 +33,10 @@ public class SaidaBean extends AbstratoBean {
             entidade = new Saida();
         }
         return (Saida) entidade;
+    }
+    
+    @Override
+    public Identificavel setEntidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

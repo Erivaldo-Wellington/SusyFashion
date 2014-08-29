@@ -27,6 +27,8 @@ public abstract class AbstratoBean implements BeanIF{
     
     public abstract Identificavel getEntidade();
     
+    public abstract Identificavel setEntidade();
+    
     @Override
     public void salvar() {
         getService().salvar(getEntidade());

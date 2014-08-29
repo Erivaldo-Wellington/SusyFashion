@@ -15,11 +15,23 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="nova_folha_form" header="Cadastro de Folhas" style="padding: 20px;">
             <h:form id="NovaFolhaForm" title="Novo folha">
+                
+                 <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+                
                 <p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
 
-                        <p:outputLabel value="#{bundle.Number}" for="numero" />
+                        <p:outputLabel value="#{bundle.Number} ------ NÃO PODERIA SER UM VALOR AUTOMÁTICO?" for="numero" />
                         <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{folhaBean.entidade.numeroFolha}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
                         
                         <p:outputLabel value="#{bundle.Status}" for="status"/>
