@@ -2,6 +2,7 @@ package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Cliente;
 import br.com.getup.susyFashion.modelo.Identificavel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,10 +34,14 @@ public class ClienteDao extends AbstratoDao<Cliente> implements ClienteDaoIF{
     }
 
     @Override
-    public List<Identificavel> findByNameLike(String query) {
-        Query createQuery = getEntityManager().createQuery("From Cliente c where c.nome like " + query);
+    public List<Cliente> findByNameLike(String query) {
+        Query createQuery = getEntityManager().createQuery("select c from Cliente c where c.nome like :nome");
+        createQuery.setParameter("nome", "%" + query + "%");
+        
+       
         return createQuery.getResultList();
     }
+    
     
     
     

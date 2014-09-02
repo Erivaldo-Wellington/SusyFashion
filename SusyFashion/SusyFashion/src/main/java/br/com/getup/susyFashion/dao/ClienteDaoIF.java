@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface ClienteDaoIF extends DaoIF{
     
-    public List<Identificavel> findByNameLike(String query);
+    public List<Cliente> findByNameLike(String query);
     
 }

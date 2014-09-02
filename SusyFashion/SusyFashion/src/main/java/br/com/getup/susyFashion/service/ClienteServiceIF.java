@@ -6,7 +6,7 @@
 
 package br.com.getup.susyFashion.service;
 
-import br.com.getup.susyFashion.modelo.Identificavel;
+import br.com.getup.susyFashion.modelo.Cliente;
 import java.util.List;
 
 /**
@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface ClienteServiceIF extends ServiceIF{
     
-    List<Identificavel> findByNameLike(String query);
+    List<Cliente> findByNameLike(String query);
 }

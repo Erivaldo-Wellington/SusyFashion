@@ -11,7 +11,6 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.component.media.player.RealPlayer;
 
 /**
  *
@@ -63,48 +62,11 @@ public class ClienteBean extends AbstratoBean {
     
     
     
-    public List<Identificavel> complete(String query){
-//        List<Identificavel> clientes1 = getClientes();
-//        System.out.println("lista clientes 1 criada");
-//        List<String> sugestoes = new ArrayList<>();
-//        for (Identificavel c : clientes1) {
-//            System.out.println("entrou no loop");
-//            Cliente clienteAux = (Cliente) c;
-//            if(clienteAux.getNome().contains(query)){
-//                System.out.println("contém alguma coisa");
-//                sugestoes.add(clienteAux.getNome());
-//            }
-//        }
-//        return sugestoes;
-        return  this.serviceClienteIF.findByNameLike(query);
+    public List<Cliente> complete(String query){
         
-        
-       
+        return serviceClienteIF.findByNameLike(query);
         
     }
 
-    
-    
-    
-    // TESTE PARA  O AUTOCOMPLETE
-    public List<String> lista(String query){
-        List<String> l = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            l.add(query + i);
-            }
-        return l;
-    }
-   
-    private String t;
-
-    public void setT(String t) {
-        this.t = t;
-    }
-
-    public String getT() {
-        return t;
-    }
-    
-    
    
 }
