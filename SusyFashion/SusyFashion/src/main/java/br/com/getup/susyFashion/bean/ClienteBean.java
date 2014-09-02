@@ -43,7 +43,12 @@ public class ClienteBean extends AbstratoBean {
         }
         return (Cliente) entidade;
     }
-   
+
+    @Override
+    public Identificavel setEntidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public List<Cliente> getClientes() {
         
         List<Identificavel> buscarTodos = buscarTodos();

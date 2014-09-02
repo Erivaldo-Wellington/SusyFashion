@@ -15,16 +15,43 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="novo_talao_form" header="Cadastro de Talões" style="padding: 20px;">
             <h:form id="NovoTalaoForm" title="Novo Talão">
+                
+                <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+                
                 <p:growl id="msgNovoTalao" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
                         <p:outputLabel value="#{bundle.Number}" for="numero" />
-                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
-
+                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" 
+                                      title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
+                        NÃO PERMITIR QUE POSSA SALVAR OUTRO TALAO COM MESMO NÚMERO.
                     </h:panelGrid>
-                    <p:commandButton actionListener="#{talaoBean.salvar()}" value="#{bundle.Save}" update="@form"/>
+                    <p:commandButton actionListener="#{talaoBean.salvar}" value="#{bundle.Save}" update="@form"/>
                     <p:commandButton value="#{bundle.Cancel}"/>
                 </h:panelGroup>
+                
+                <p:dataTable id="datatableTaloes" value="#{talaoBean.listaTalao}" var="talao"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px; width: 400px;" rows="5"
+                             emptyMessage="Nenhum talão encontrado" paginator="true" paginatorPosition="bottom" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,20">
+
+                    <p:column headerText="#{bundle.Talon}" style="text-align: center; font-size: 14px;" width="10">
+                        <h:outputText value="#{talao.numeroTalao}"/>
+                    </p:column>
+
+                </p:dataTable>
+                
             </h:form>
         </p:panel>
 

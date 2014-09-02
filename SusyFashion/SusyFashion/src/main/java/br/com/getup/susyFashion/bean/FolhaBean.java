@@ -37,6 +37,11 @@ public class FolhaBean extends AbstratoBean{
         }
         return (Folha) entidade;
     }
+    
+    @Override
+    public Identificavel setEntidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
    
     

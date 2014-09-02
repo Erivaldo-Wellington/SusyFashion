@@ -17,34 +17,50 @@ and open the template in the editor.
             <h:form id="NovoClienteForm" title="Novo Cliente">
                 <p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
-                    <h:panelGrid columns="6" cellpadding="4">
+                    <h:panelGrid columns="4">
                         <p:outputLabel value="#{bundle.Name}" for="nome" />
-                        <p:inputText id="nome" value="#{clienteBean.entidade.nome}" title="#{bundle.Name}"  required="true" requiredMessage="#{bundle.NameRequired}"/>
+                        <p:inputText id="nome" value="#{clienteBean.entidade.nome}" title="#{bundle.Name}"  
+                                     required="true" requiredMessage="#{bundle.NameRequired}"/>
 
+                        <p:commandButton actionListener="#{clienteBean.salvar}" value="#{bundle.Search}" 
+                                         update="@form" style="font-size: 14px;"/>
+                        <p:button value="#{bundle.Cancel}" style="font-size: 14px;" outcome="/index.xhtml"/>
                     </h:panelGrid>
-                    <p:commandButton actionListener="#{clienteBean.salvar}" value="#{bundle.Search}" update="@form"/>
-                    <p:commandButton value="#{bundle.Cancel}"/>
                 </h:panelGroup>
 
-                <p:dataTable id="datatableServices" value="#{clienteBean.clientes}" var="clientes"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="20"
+                <p:dataTable id="datatableServices" value="#{clienteBean.clientes}" var="cliente"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5"
                              emptyMessage="Nenhum cliente encontrado" paginator="true" paginatorPosition="bottom" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,20"
                              >
 
-                    <p:column headerText="#{bundle.Id}" style="text-align: center" width="20">
-                        <h:outputText value="#{clientes.id}"/>
-                    </p:column>
-                    
-                     <p:column headerText="#{bundle.Name}" style="text-align: center" width="400">
-                         <h:outputText value="#{clientes.nome}"/>
-                    </p:column>
-                    
-                    <p:column headerText="#{bundle.CPF}" style="text-align: center" width="100">
-                        <h:outputText value="#{clientes.cpf}"/>
+                    <p:column headerText="#{bundle.Id}" style="text-align: center; font-size: 14px;" width="10">
+                        <h:outputText value="#{cliente.id}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.Actions}" style="text-align: center" width="50">
-                        <p:button id="editButton" title="#{bundle.Edit}" icon="ui-icon ui-icon-pencil"/>
+                    <p:column headerText="#{bundle.Name}" style="text-align: left; font-size: 14px;" width="200">
+                        <h:outputText value="#{cliente.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.CPF}" style="text-align: center; font-size: 14px;" width="60">
+                        <h:outputText value="#{cliente.cpf}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.AddressCity}" style="text-align: center; font-size: 14px;" width="100">
+                        <h:outputText value="#{cliente.endereco.cidade}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.AddressState}" style="text-align: center; font-size: 14px;" width="10">
+                        <h:outputText value="#{cliente.endereco.estado}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
+                        <p:commandButton id="editButton" title="#{bundle.Edit}" icon="ui-icon ui-icon-pencil" action="/cliente/novo.xhtml">
+                            <f:setPropertyActionListener target="#{clienteBean.entidade}" value="#{entidade}"/>
+                            <!--<f:param name="cliente" value="#{cliente.id}"/>-->
+                        </p:commandButton>
                         <p:commandButton id="deleteButton" title="#{bundle.Delete}" icon="ui-icon ui-icon-trash"/>
                     </p:column>
 
