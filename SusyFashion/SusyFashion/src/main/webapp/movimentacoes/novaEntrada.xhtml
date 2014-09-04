@@ -15,8 +15,8 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="nova_entrada_form" header="Cadastro de Entradas" style="padding: 20px;">
             <h:form id="NovaEntradaForm" title="Nova Entrada">
-                
-                 <!-- Show a gif image to loading ajax user requests -->
+
+                <!-- Show a gif image to loading ajax user requests -->
                 <p:ajaxStatus>
                     <f:facet name="start">
                         <h:graphicImage library="images" name="loading.gif"/>
@@ -26,7 +26,7 @@ and open the template in the editor.
                         <h:outputText value=""/>
                     </f:facet>
                 </p:ajaxStatus>
-                
+
                 <p:growl id="msgNovaEntrada" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
@@ -34,12 +34,13 @@ and open the template in the editor.
                         <p:inputMask  id="valor"  mask="9?9999999999" placeHolder="" value="#{entradaBean.entidade.valor}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.ValeuRequired}"/>
                         <p:outputLabel value="#{bundle.Date}" for="data" />
                         <p:calendar id="data" value="#{entradaBean.entidade.dataMovimentacao}" title="#{bundle.Date}" navigator="true" required="true" >
-                       </p:calendar>   
+                        </p:calendar>   
                         <p:outputLabel value="#{bundle.Description}" for="descricao"/>
                         <p:inputTextarea  id="descricao" value="#{entradaBean.entidade.descricao}" title="#{bundle.Description}" />
                     </h:panelGrid>
                     <p:commandButton actionListener="#{entradaBean.salvar()}" value="#{bundle.Save}" update="@form"/>
-                    <p:commandButton value="#{bundle.Cancel}"/>
+                    <p:button value="#{bundle.Cancel}" outcome="/index" />
+                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
                 </h:panelGroup>
             </h:form>
         </p:panel>

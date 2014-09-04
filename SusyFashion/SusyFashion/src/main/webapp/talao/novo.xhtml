@@ -15,7 +15,7 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="novo_talao_form" header="Cadastro de Talões" style="padding: 20px;">
             <h:form id="NovoTalaoForm" title="Novo Talão">
-                
+
                 <!-- Show a gif image to loading ajax user requests -->
                 <p:ajaxStatus>
                     <f:facet name="start">
@@ -26,7 +26,7 @@ and open the template in the editor.
                         <h:outputText value=""/>
                     </f:facet>
                 </p:ajaxStatus>
-                
+
                 <p:growl id="msgNovoTalao" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
@@ -35,9 +35,10 @@ and open the template in the editor.
                                       title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
                     </h:panelGrid>
                     <p:commandButton actionListener="#{talaoBean.salvarTalao}" value="#{bundle.Save}" update="@form"/>
-                    <p:commandButton value="#{bundle.Cancel}"/>
+                    <p:button value="#{bundle.Cancel}" outcome="/index" />
+                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
                 </h:panelGroup>
-                
+
                 <p:dataTable id="datatableTaloes" value="#{talaoBean.listaTalao}" var="talao"
                              paginatorAlwaysVisible="false" style="margin-top: 20px; width: 400px;" rows="5"
                              emptyMessage="Nenhum talão encontrado" paginator="true" paginatorPosition="bottom" 
@@ -50,7 +51,7 @@ and open the template in the editor.
                     </p:column>
 
                 </p:dataTable>
-                
+
             </h:form>
         </p:panel>
 

@@ -15,9 +15,9 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="nova_folha_form" header="Cadastro de Folhas" style="padding: 20px;">
             <h:form id="NovaFolhaForm" title="Novo folha">
-                
-               
-                
+
+
+
                 <p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
@@ -54,7 +54,8 @@ and open the template in the editor.
                         </p:autoComplete>
 
                         <p:commandButton action="#{folhaBean.salvar}" value="#{bundle.Save}" update="@form"/>
-                        <p:commandButton value="#{bundle.Cancel}"/>
+                        <p:button value="#{bundle.Cancel}" outcome="/index" />
+                        <p:commandButton value="#{bundle.Clean}" type="reset"/>
 
                     </h:panelGrid>
                 </h:panelGroup>

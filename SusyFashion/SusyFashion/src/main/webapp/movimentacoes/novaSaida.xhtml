@@ -39,7 +39,8 @@ and open the template in the editor.
                         <p:inputTextarea  id="descricao" value="#{saidaBean.entidade.descricao}" title="#{bundle.Description}" />
                     </h:panelGrid>
                     <p:commandButton actionListener="#{saidaBean.salvar()}" value="#{bundle.Save}" update="@form"/>
-                    <p:commandButton value="#{bundle.Cancel}"/>
+                    <p:button value="#{bundle.Cancel}" outcome="/index" />
+                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
                 </h:panelGroup>
             </h:form>
         </p:panel>
