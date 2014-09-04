@@ -7,7 +7,8 @@ import br.com.getup.susyFashion.service.TalaoServiceIF;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.model.SelectItem;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,8 +22,6 @@ public class TalaoBean extends AbstratoBean {
 
     @Inject
     private TalaoServiceIF talaoServiceIF;
-
-    private SelectItem[] selectItens;
 
     private List<Talao> listaTalao;
 
@@ -47,32 +46,11 @@ public class TalaoBean extends AbstratoBean {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//     public  SelectItem[] getSelectItens() {
-//        List<Identificavel> buscarTodos = buscarTodos();
-//        
-//        selectItens = new SelectItem[buscarTodos.size()];
-//        
-////        selectItens = (SelectItem[]) buscarTodos.toArray();
-//        
-//         for (int i = 0; i < buscarTodos.size(); i++) {
-//             Identificavel identificavel = buscarTodos.get(i);
-//             selectItens[i]= identificavel;
-//         }
-//
-//
-//
-//        
-//        return selectItens;
-//    }
-//    public List<Identificavel> getListaTalao() {
-//        return getService().buscarTodos();
-//    }
-
     /**
      * @return the listaTalao
      */
-       public List<Talao> getListaTalao() {
-        
+    public List<Talao> getListaTalao() {
+
         List<Identificavel> buscarTodos = buscarTodos();
         List<Talao> taloesLista = new ArrayList<>();
         for (Identificavel identificavel : buscarTodos) {
@@ -80,5 +58,26 @@ public class TalaoBean extends AbstratoBean {
             taloesLista.add(taloesAux);
         }
         return taloesLista;
+    }
+
+    public boolean salvarTalao() {
+
+        Talao aux = (Talao) getEntidade();
+
+        List<Talao> listaTalao1 = getListaTalao();
+
+        for (Talao talao : listaTalao1) {
+            if (talao.getNumeroTalao() == aux.getNumeroTalao()) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                FacesMessage.SEVERITY_ERROR, "Número de Talão já existe", ""));
+                return false;
+            }
+        }
+        getService().salvar(getEntidade());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
+
+        return true;
+
     }
 }

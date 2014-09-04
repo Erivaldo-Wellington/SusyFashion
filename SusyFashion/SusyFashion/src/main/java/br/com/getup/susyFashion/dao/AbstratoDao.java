@@ -4,6 +4,7 @@ import br.com.getup.susyFashion.modelo.Identificavel;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -20,7 +21,12 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF{
     
     public abstract EntityManager getEntityManager();
     
+    /**
+     *
+     * @param entidade
+     */
     @Override
+    @Transactional
     public void salvar(Identificavel entidade) {
         getEntityManager().persist(entidade);
     }

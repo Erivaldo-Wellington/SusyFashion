@@ -33,9 +33,8 @@ and open the template in the editor.
                         <p:outputLabel value="#{bundle.Number}" for="numero" />
                         <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" 
                                       title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
-                        NÃO PERMITIR QUE POSSA SALVAR OUTRO TALAO COM MESMO NÚMERO.
                     </h:panelGrid>
-                    <p:commandButton actionListener="#{talaoBean.salvar}" value="#{bundle.Save}" update="@form"/>
+                    <p:commandButton actionListener="#{talaoBean.salvarTalao}" value="#{bundle.Save}" update="@form"/>
                     <p:commandButton value="#{bundle.Cancel}"/>
                 </h:panelGroup>
                 

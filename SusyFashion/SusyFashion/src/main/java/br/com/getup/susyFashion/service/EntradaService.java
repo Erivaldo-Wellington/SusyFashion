@@ -5,16 +5,15 @@
  */
 package br.com.getup.susyFashion.service;
 
-import br.com.getup.susyFashion.dao.DaoIF;
 import br.com.getup.susyFashion.dao.EntradaDaoIF;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author E.Wellington
  */
-@Stateless
+@RequestScoped
 public class EntradaService extends AbstratoService implements EntradaServiceIF {
 
     @Inject

@@ -4,9 +4,7 @@ import br.com.getup.susyFashion.modelo.Folha;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.service.FolhaServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
-import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 

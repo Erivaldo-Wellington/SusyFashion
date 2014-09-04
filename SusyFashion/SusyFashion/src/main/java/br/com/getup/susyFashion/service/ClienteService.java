@@ -9,14 +9,14 @@ package br.com.getup.susyFashion.service;
 import br.com.getup.susyFashion.dao.ClienteDaoIF;
 import br.com.getup.susyFashion.modelo.Cliente;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author E.Wellington
  */
-@Stateless
+@RequestScoped
 public class ClienteService extends AbstratoService implements ClienteServiceIF{
     
     @Inject

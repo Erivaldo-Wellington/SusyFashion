@@ -6,16 +6,18 @@
 
 package br.com.getup.susyFashion.service;
 
-import br.com.getup.susyFashion.dao.DaoIF;
 import br.com.getup.susyFashion.dao.TalaoDaoIF;
-import javax.ejb.Stateless;
+import br.com.getup.susyFashion.modelo.Identificavel;
+import br.com.getup.susyFashion.modelo.Talao;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author E.Wellington
  */
-@Stateless
+@RequestScoped
 public class TalaoService extends AbstratoService implements TalaoServiceIF{
     
     @Inject
@@ -25,4 +27,8 @@ public class TalaoService extends AbstratoService implements TalaoServiceIF{
     public TalaoDaoIF getDao() {
         return dao;
     }
+
+   
+    
+    
 }

@@ -4,7 +4,7 @@ package br.com.getup.susyFashion.dao;
 import br.com.getup.susyFashion.modelo.Entrada;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author E.Wellington
  */
-@Stateless
+@RequestScoped
 public class EntradaDao extends AbstratoDao<Entrada> implements EntradaDaoIF{
     
     

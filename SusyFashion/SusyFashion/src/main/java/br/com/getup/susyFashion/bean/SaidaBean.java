@@ -12,7 +12,7 @@ import javax.inject.Named;
  *
  * @author Elisângela
  */
-@Named
+@Named(value = "saidaBean")
 @RequestScoped
 public class SaidaBean extends AbstratoBean {
     

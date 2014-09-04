@@ -16,7 +16,7 @@ import javax.inject.Named;
  *
  * @author Elisângela
  */
-@Named
+@Named 
 @RequestScoped
 public class ClienteBean extends AbstratoBean {
 
