@@ -35,8 +35,8 @@ public class SaidaBean extends AbstratoBean {
         return (Saida) entidade;
     }
     
-    @Override
-    public Identificavel setEntidade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     @Override
+    public void setEntidade(Identificavel entidade) {
+        this.entidade = entidade;
     }
 }

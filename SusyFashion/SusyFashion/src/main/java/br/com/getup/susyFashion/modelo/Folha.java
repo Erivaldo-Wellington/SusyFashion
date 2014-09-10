@@ -1,5 +1,6 @@
 package br.com.getup.susyFashion.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -22,7 +24,8 @@ public class Folha implements Identificavel{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne
+    @CascadeOnDelete
+    @ManyToOne (cascade = CascadeType.REMOVE)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     
@@ -32,7 +35,7 @@ public class Folha implements Identificavel{
     
     private String status;
     
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name = "talao_id")
     private Talao talao;
 

@@ -8,6 +8,7 @@ import br.com.getup.susyFashion.service.ServiceIF;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,14 +24,34 @@ public class ClienteBean extends AbstratoBean {
     @Inject
     private ClienteServiceIF serviceClienteIF;
     
+    // lista de todos os clientes
     private List<Cliente> clientes;
     
+    //lista dos clientes filtrados na tela /cliente/listar.xhtml
+    private List<Cliente> clientesFiltrados;
+    
+    //lista dos estados do Brasil
     private List<Estados> estados;
     
     public ClienteBean() {
         this.estados = Arrays.asList(Estados.values());        
     }
-
+    
+    @PostConstruct
+    public void init(){
+        clientes = new ArrayList<>();
+    }
+    
+    /**
+     * Método para o autoComplete na tela de cadastro de uma nova folha
+     * @param query
+     * @return 
+     */
+    public List<Cliente> complete(String query){
+        
+        return serviceClienteIF.findByNameLike(query);
+        
+    }
     @Override
     public ServiceIF getService() {
         return serviceClienteIF;
@@ -45,9 +66,11 @@ public class ClienteBean extends AbstratoBean {
     }
 
     @Override
-    public Identificavel setEntidade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setEntidade(Identificavel entidade) {
+        this.entidade = entidade;
     }
+    
+    // MÉTODOS GETTERS E SETTERS
     
     public List<Cliente> getClientes() {
         
@@ -63,15 +86,17 @@ public class ClienteBean extends AbstratoBean {
     public List<Estados> getEstados() {
         return estados;
     }
-    
-    
-    
-    
-    public List<Cliente> complete(String query){
-        
-        return serviceClienteIF.findByNameLike(query);
-        
+
+    public List<Cliente> getClientesFiltrados() {
+        return clientesFiltrados;
     }
+
+    public void setClientesFiltrados(List<Cliente> clientesFiltrados) {
+        this.clientesFiltrados = clientesFiltrados;
+    }
+
+    
+            
 
    
 }

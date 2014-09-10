@@ -6,8 +6,12 @@
 package br.com.getup.susyFashion.service;
 
 import br.com.getup.susyFashion.dao.FolhaDaoIF;
+import br.com.getup.susyFashion.dao.qualifiers.FolhaDAO;
+import br.com.getup.susyFashion.modelo.Folha;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -16,12 +20,13 @@ import javax.inject.Inject;
 @RequestScoped
 public class FolhaService extends AbstratoService implements FolhaServiceIF {
     
-    @Inject
+    @Inject @FolhaDAO
     private FolhaDaoIF dao;
 
     @Override
     public FolhaDaoIF getDao() {
         return dao;
     }
+    
 
 }

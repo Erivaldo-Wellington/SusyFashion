@@ -9,6 +9,7 @@ package br.com.getup.susyFashion.service;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import java.io.Serializable;
 import java.util.List;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -20,6 +21,7 @@ public interface ServiceIF extends Serializable{
     
     void atualizar(Identificavel entidade);
     
+    @Transactional
     void remover(Identificavel entidade);
     
     Identificavel buscarPorId(Long id);

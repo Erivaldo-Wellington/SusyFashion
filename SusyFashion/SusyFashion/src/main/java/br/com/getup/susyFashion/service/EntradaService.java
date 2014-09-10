@@ -6,6 +6,7 @@
 package br.com.getup.susyFashion.service;
 
 import br.com.getup.susyFashion.dao.EntradaDaoIF;
+import br.com.getup.susyFashion.dao.qualifiers.EntradaDAO;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import javax.inject.Inject;
 @RequestScoped
 public class EntradaService extends AbstratoService implements EntradaServiceIF {
 
-    @Inject
+    @Inject @EntradaDAO
     private EntradaDaoIF dao;
 
     @Override

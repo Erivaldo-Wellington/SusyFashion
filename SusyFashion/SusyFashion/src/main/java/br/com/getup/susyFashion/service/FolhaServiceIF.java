@@ -11,5 +11,6 @@ package br.com.getup.susyFashion.service;
  * @author E.Wellington
  */
 public interface FolhaServiceIF extends ServiceIF{
+  
     
 }

@@ -1,7 +1,7 @@
 package br.com.getup.susyFashion.modelo;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +22,7 @@ public abstract class Movimentacao implements Identificavel{
     private Long id;
     
     @Temporal(TemporalType.DATE)
-    private Date dataMovimentacao;
+    private Calendar dataMovimentacao;
     
     @Min(value = 0)
     private BigDecimal valor;
@@ -39,11 +39,11 @@ public abstract class Movimentacao implements Identificavel{
         this.id = id;
     }
 
-    public Date getDataMovimentacao() {
+    public Calendar getDataMovimentacao() {
         return dataMovimentacao;
     }
 
-    public void setDataMovimentacao(Date dataMovimentacao) {
+    public void setDataMovimentacao(Calendar dataMovimentacao) {
         this.dataMovimentacao = dataMovimentacao;
     }
 

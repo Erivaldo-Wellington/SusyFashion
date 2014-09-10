@@ -13,19 +13,11 @@ and open the template in the editor.
 
 
     <ui:define name="content">
-        <p:panel id="novo_cliente_form" header="Cadastro de Clientes" style="padding: 20px;">
-            <h:form id="NovoClienteForm" title="Novo Cliente">
+        <p:panel id="novo_cliente_form" header="Busca de Clientes" style="padding: 20px;">
+            <h:form id="listarClienteForm" title="Buscar Cliente">
                 <p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
-                    <h:panelGrid columns="4">
-                        <p:outputLabel value="#{bundle.Name}" for="nome" />
-                        <p:inputText id="nome" value="#{clienteBean.entidade.nome}" title="#{bundle.Name}"  
-                                     required="true" requiredMessage="#{bundle.NameRequired}"/>
 
-                        <p:commandButton actionListener="#{clienteBean.salvar}" value="#{bundle.Search}" 
-                                         update="@form" style="font-size: 14px;"/>
-                        <p:button value="#{bundle.Cancel}" style="font-size: 14px;" outcome="/index.xhtml"/>
-                    </h:panelGrid>
                 </h:panelGroup>
 
                 <p:dataTable id="datatableServices" value="#{clienteBean.clientes}" var="cliente"
@@ -34,34 +26,49 @@ and open the template in the editor.
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
                              rowsPerPageTemplate="5,10,20"
+                             widgetVar="tabelaCliente" filteredValue="#{clienteBean.clientesFiltrados}"
                              >
 
-                    <p:column headerText="#{bundle.Id}" style="text-align: center; font-size: 14px;" width="10">
+                    <f:facet name="header"  >
+                        <p:outputPanel>
+                            <h:outputText id="outputTextFilter" value="#{bundle.SearchAllFields}:"  />
+                            <p:inputText  id="globalFilter" onkeyup="PF('tabelaCliente').filter()" style="width:150px" placeholder="Digite Aqui"/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 14px;" width="10" >
                         <h:outputText value="#{cliente.id}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.Name}" style="text-align: left; font-size: 14px;" width="200">
+                    <p:column id="columnName" headerText="#{bundle.Name}" filterBy="#{cliente.nome}" filterMatchMode="contains" style="text-align: left; font-size: 14px;" width="200">
                         <h:outputText value="#{cliente.nome}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.CPF}" style="text-align: center; font-size: 14px;" width="60">
+                    <p:column id="columnCPF" headerText="#{bundle.CPF}" filterBy="#{cliente.cpf}" filterMatchMode="contains" style="text-align: center; font-size: 14px;"  width="60">
                         <h:outputText value="#{cliente.cpf}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.AddressCity}" style="text-align: center; font-size: 14px;" width="100">
+                    <p:column id="columnCity" headerText="#{bundle.AddressCity}" filterBy="#{cliente.endereco.cidade}" filterMatchMode="contains" style="text-align: center; font-size: 14px;" width="100">
                         <h:outputText value="#{cliente.endereco.cidade}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.AddressState}" style="text-align: center; font-size: 14px;" width="10">
+                    <p:column id="columnState" headerText="#{bundle.AddressState}" style="text-align: center; font-size: 14px;" width="10">
                         <h:outputText value="#{cliente.endereco.estado}"/>
                     </p:column>
 
-                    <p:column headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
+                    <p:column id="columnAction" headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
+
                         <p:commandButton id="editButton" title="#{bundle.Edit}" icon="ui-icon ui-icon-pencil" action="/cliente/novo.xhtml">
                             <f:setPropertyActionListener target="#{clienteBean.entidade}" value="#{entidade}"/>
-                            <!--<f:param name="cliente" value="#{cliente.id}"/>-->
+
                         </p:commandButton>
-                        <p:commandButton id="deleteButton" title="#{bundle.Delete}" icon="ui-icon ui-icon-trash"/>
+
+                        <p:commandButton id="deleteButton" title="#{bundle.Delete}" ajax="false" icon="ui-icon ui-icon-trash" action="#{clienteBean.remover}" update="@form">
+                            <f:setPropertyActionListener  target="#{clienteBean.entidade}" value="#{cliente}"/>
+
+                        </p:commandButton>
+
+
                     </p:column>
 
                 </p:dataTable>
