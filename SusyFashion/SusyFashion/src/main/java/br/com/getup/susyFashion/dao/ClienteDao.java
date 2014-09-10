@@ -1,9 +1,10 @@
 package br.com.getup.susyFashion.dao;
 
+import br.com.getup.susyFashion.dao.qualifiers.ClienteDAO;
 import br.com.getup.susyFashion.modelo.Cliente;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,7 +13,8 @@ import javax.persistence.Query;
  *
  * @author E.Wellington
  */
-@RequestScoped
+@ClienteDAO
+@Stateless
 public class ClienteDao extends AbstratoDao<Cliente> implements ClienteDaoIF{
     
     @PersistenceContext(unitName = "susyFashion")
@@ -40,7 +42,7 @@ public class ClienteDao extends AbstratoDao<Cliente> implements ClienteDaoIF{
        
         return createQuery.getResultList();
     }
-    
+
     
     
     

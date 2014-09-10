@@ -9,7 +9,7 @@ package br.com.getup.susyFashion.service;
 import br.com.getup.susyFashion.dao.DaoIF;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import java.util.List;
-import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -22,15 +22,16 @@ public abstract class AbstratoService implements ServiceIF{
     public abstract DaoIF getDao();
     
     @Override
+    @Transactional
     public void salvar(Identificavel entidade) {
         getDao().salvar(entidade);
     }
 
     @Override
     public void atualizar(Identificavel entidade) {
-        getDao().remover(entidade);
+        getDao().atualizar(entidade);
     }
-
+    
     @Override
     public void remover(Identificavel entidade) {
         getDao().remover(entidade);

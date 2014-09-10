@@ -33,7 +33,8 @@
                 
                 <p:submenu label="#{bundle.Clients}">
                     <p:menuitem value="#{bundle.Create}" outcome="/cliente/novo"/>
-                    <p:menuitem value="#{bundle.Search}" outcome="/cliente/buscar"/>
+                    <p:menuitem value="#{bundle.List}" outcome="/cliente/listar"/>
+                    <p:menuitem value="#{bundle.Search}" outcome="/folha/buscar"/>
                 </p:submenu>
 
                 <p:submenu label="#{bundle.Cadastres}">
@@ -57,14 +58,9 @@
                 <p:submenu label="#{bundle.Help}">
                     <p:menuitem value="#{bundle.About}"/>
                     <p:menuitem value="#{bundle.HowToUse}"/>
-                </p:submenu>   
-                <p:menuitem value="Sair" action="#{loginBean.sair}" icon="ui-icon-power"/>
-                <f:facet name="options">
-                    <p:inputText valueChangeListener="Buscar Clientes" style="margin-right: 10px;"/>
-                    <p:commandButton type="button" value="#{bundle.Search}" />
-
-                </f:facet>
-
+                </p:submenu>           
+				<p:menuitem value="Sair" action="#{loginBean.sair}" icon="ui-icon-power"/>
+                
             </p:menubar>
         </h:form>
 

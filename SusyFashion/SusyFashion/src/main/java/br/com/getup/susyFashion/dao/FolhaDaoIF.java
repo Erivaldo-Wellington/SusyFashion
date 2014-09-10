@@ -6,4 +6,6 @@ package br.com.getup.susyFashion.dao;
  */
 public interface FolhaDaoIF extends DaoIF{
     
+
+    
 }

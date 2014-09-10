@@ -1,6 +1,7 @@
 package br.com.getup.susyFashion.modelo;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -18,7 +19,8 @@ public class Cliente extends Pessoa{
     
  @OneToMany (mappedBy = "cliente", targetEntity = Folha.class, fetch = FetchType.LAZY)  
  private  List<Folha> listaFolhas;
-
+ 
+ 
     public List<Folha> getListaFolhas() {
         return listaFolhas;
     }

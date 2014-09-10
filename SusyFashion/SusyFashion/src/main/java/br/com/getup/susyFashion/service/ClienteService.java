@@ -7,7 +7,10 @@
 package br.com.getup.susyFashion.service;
 
 import br.com.getup.susyFashion.dao.ClienteDaoIF;
+import br.com.getup.susyFashion.dao.qualifiers.ClienteDAO;
 import br.com.getup.susyFashion.modelo.Cliente;
+import br.com.getup.susyFashion.modelo.Folha;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,7 +22,7 @@ import javax.inject.Inject;
 @RequestScoped
 public class ClienteService extends AbstratoService implements ClienteServiceIF{
     
-    @Inject
+    @Inject @ClienteDAO
     private ClienteDaoIF dao;
     
     @Override
@@ -31,6 +34,7 @@ public class ClienteService extends AbstratoService implements ClienteServiceIF{
     public List<Cliente> findByNameLike(String query) {
         return getDao().findByNameLike(query);
     }
+
     
     
     

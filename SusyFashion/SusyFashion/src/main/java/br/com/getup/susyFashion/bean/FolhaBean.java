@@ -4,6 +4,9 @@ import br.com.getup.susyFashion.modelo.Folha;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.service.FolhaServiceIF;
 import br.com.getup.susyFashion.service.ServiceIF;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,34 +17,82 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class FolhaBean extends AbstratoBean{
-    
+public class FolhaBean extends AbstratoBean {
+
     @Inject
     private FolhaServiceIF folhaServiceIF;
-
+    
+    private List<Folha> folhasDoCliente;
+    
+    private List<Folha> folhasFiltradas;
+    
+    private String nomeCliente;
     
     public FolhaBean() {
     }
-
+    
+    @PostConstruct
+    public void init() {
+        folhasDoCliente = new ArrayList<>();
+    }
+    
     @Override
     public ServiceIF getService() {
         return folhaServiceIF;
     }
 
-     @Override
+    @Override
     public Folha getEntidade() {
         if (entidade == null) {
             entidade = new Folha();
         }
         return (Folha) entidade;
     }
-    
+
     @Override
-    public Identificavel setEntidade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setEntidade(Identificavel entidade) {
+        this.entidade = entidade;
     }
 
-   
+    public List<Folha> getFolhasDoCliente() {
+        List<Identificavel> buscarTodos = folhaServiceIF.buscarTodos();
+        
+        List<Folha> listaAuxiliar = new ArrayList<>();
+        
+        for (Identificavel identificavel : buscarTodos) {
+            Folha aux = (Folha) identificavel;
+            listaAuxiliar.add(aux);
+        }
+        setFolhasDoCliente(listaAuxiliar);
+        return folhasDoCliente;
+    }
+
+    public void setFolhasDoCliente(List<Folha> folhasDoCliente) {
+        this.folhasDoCliente = folhasDoCliente;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public List<Folha> getFolhasFiltradas() {
+        return folhasFiltradas;
+    }
+
+    public void setFolhasFiltradas(List<Folha> folhasFiltradas) {
+        this.folhasFiltradas = folhasFiltradas;
+    }
+    
+    //está com problemas
+    public void darBaixaConta(){
+        getEntidade().setStatus("fechada");
+        
+        atualizar();
+    }
     
     
 }

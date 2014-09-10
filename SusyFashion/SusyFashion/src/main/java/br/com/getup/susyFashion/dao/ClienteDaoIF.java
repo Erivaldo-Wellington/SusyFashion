@@ -11,5 +11,6 @@ import java.util.List;
 public interface ClienteDaoIF extends DaoIF{
     
     public List<Cliente> findByNameLike(String query);
+
     
 }

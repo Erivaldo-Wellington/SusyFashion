@@ -7,9 +7,7 @@
 package br.com.getup.susyFashion.service;
 
 import br.com.getup.susyFashion.dao.TalaoDaoIF;
-import br.com.getup.susyFashion.modelo.Identificavel;
-import br.com.getup.susyFashion.modelo.Talao;
-import java.util.List;
+import br.com.getup.susyFashion.dao.qualifiers.TalaoDAO;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -20,7 +18,7 @@ import javax.inject.Inject;
 @RequestScoped
 public class TalaoService extends AbstratoService implements TalaoServiceIF{
     
-    @Inject
+    @Inject @TalaoDAO
     private TalaoDaoIF dao;
     
     @Override

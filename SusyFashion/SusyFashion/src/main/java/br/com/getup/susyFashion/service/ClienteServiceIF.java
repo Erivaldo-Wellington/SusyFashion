@@ -16,4 +16,6 @@ import java.util.List;
 public interface ClienteServiceIF extends ServiceIF{
     
     List<Cliente> findByNameLike(String query);
+
+    
 }

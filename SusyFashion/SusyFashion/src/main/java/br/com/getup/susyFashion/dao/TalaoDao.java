@@ -1,9 +1,10 @@
 package br.com.getup.susyFashion.dao;
 
+import br.com.getup.susyFashion.dao.qualifiers.TalaoDAO;
 import br.com.getup.susyFashion.modelo.Identificavel;
 import br.com.getup.susyFashion.modelo.Talao;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,7 +12,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author E.Wellington
  */
-@RequestScoped
+@TalaoDAO
+@Stateless
 public class TalaoDao extends AbstratoDao<Talao> implements TalaoDaoIF {
 
     @PersistenceContext(unitName = "susyFashion")

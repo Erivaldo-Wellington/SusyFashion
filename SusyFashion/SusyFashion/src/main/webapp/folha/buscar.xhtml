@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/susy_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="content">
+        <p:panel id="listar_folhas_form" header="Listar Clientes" style="padding: 20px;">
+            <h:form id="listarClienteForm" title="Listar Clientes">
+                <p:growl id="msgListarCliente" showDetail="true" sticky="true"/>
+                <h:panelGroup id="display">
+
+                </h:panelGroup>
+
+                <p:dataTable id="datatableServices" value="#{folhaBean.folhasDoCliente}" 
+                             widgetVar="tabelaFolha" var="folha"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5"
+                             emptyMessage="Nenhum cliente encontrado" paginator="true" paginatorPosition="bottom" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,20" filteredValue="#{folhaBean.folhasFiltradas}"
+                             >
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText id="outputTextFilter" value="#{bundle.SearchAllFields}:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('tabelaFolha').filter()" style="width:150px" placeholder="#{bundle.EnterHere}"/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 14px;" width="10" >
+                        <h:outputText value="#{folha.cliente.id}"/>
+                    </p:column>
+
+                    <p:column id="columnName" headerText="#{bundle.Name}" filterBy="#{folha.cliente.nome}"  filterMatchMode="contains" style="text-align: left; font-size: 14px;" width="30">
+                        <h:outputText value="#{folha.cliente.nome}"/>
+                    </p:column>
+
+                    <p:column id="columnCPF" headerText="#{bundle.CPF}"  style="text-align: center; font-size: 14px;" width="15">
+                        <h:outputText value="#{folha.cliente.cpf}"/>
+                    </p:column>
+
+                    <p:column id="columnCity" headerText="#{bundle.AddressCity}" filterBy="#{folha.cliente.endereco.cidade}" style="text-align: center; font-size: 14px;" width="25">
+                        <h:outputText value="#{folha.cliente.endereco.cidade}"/>
+                    </p:column>
+
+                    <p:column id="columnSheet" headerText="#{bundle.Sheet}" style="text-align: center; font-size: 14px;" width="15">
+                        <h:outputText value="#{folha.numeroFolha}"/>
+                    </p:column>
+
+                    <p:column id="columnTalon" headerText="#{bundle.Talon}" filterBy="#{folha.talao.numeroTalao}" style="text-align: center; font-size: 14px;" width="15">
+                        <h:outputText value="#{folha.talao.numeroTalao}"/>
+                    </p:column>
+
+                    <p:column id="columnAction" headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
+                       
+                        <p:commandButton id="fecharConta" title="#{bundle.CloseAccount}"  icon="ui-icon ui-icon-locked" action="#{folhaBean.darBaixaConta}" update="@form">
+                            <f:setPropertyActionListener  target="#{folhaBean.entidade}" value="#{folha}"/>
+
+                        </p:commandButton>
+
+
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </p:panel>
+
+
+    </ui:define>
+
+</ui:composition>
