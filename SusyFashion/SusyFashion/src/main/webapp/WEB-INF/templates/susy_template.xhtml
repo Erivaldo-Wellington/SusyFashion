@@ -16,6 +16,9 @@
     <h:body>
         <p:growl id="growl" life="3000" />
 
+        <p:idleMonitor timeout="420000" >
+            <p:ajax event="idle" listener="#{loginBean.tempoEncerrado}" />
+        </p:idleMonitor>
         <header>
 
             <div id="bg_div" style="position: relative;z-index: 0;text-align: center;">

@@ -2,6 +2,7 @@ package br.com.getup.susyFashion.bean;
 
 import br.com.getup.susyFashion.dao.LoginDaoIF;
 import br.com.getup.susyFashion.modelo.Login;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -20,9 +21,7 @@ public class LoginBean implements Serializable{
     
     @Inject
     private LoginDaoIF loginDaoIF;
-       
     private Login login;
-    
     private static boolean usuarioLogado;
     
     public LoginBean() {
@@ -34,17 +33,29 @@ public class LoginBean implements Serializable{
         
     }
     
-    public String logar(){
+    public void logar() throws IOException{
         
         if(estaLogado()){
-            return "/index.xhtml";
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("/SusyFashion/index.xhtml");
             
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Senha ou Usuario inválidos", ""));
-            usuarioLogado=false;
-        }
-        return "/login.xhtml";
+        }else FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/SusyFashion/login.xhtml");
+        
+    }
+    
+    public void tempoEncerrado() throws IOException {
+        sair();
+        
+    }
+    
+    public void sair() throws IOException{
+        usuarioLogado=false;
+        login= null;
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/SusyFashion/login.xhtml");
     }
     
     private boolean estaLogado(){
@@ -52,15 +63,14 @@ public class LoginBean implements Serializable{
         if(loginAux != null){
             usuarioLogado=true;
             
-            //System.out.println("Usuario:"+loginAux.getUsuario());
+            System.out.println("Usuario:"+loginAux.toString());
             return true;
+        }else{
+            usuarioLogado=false;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Senha ou Usuário inválidos", ""));
         }
         return false;
-    }
-    public String sair(){
-        login= null;
-        usuarioLogado=false;
-        return "/login.xhtml";
     }
     
     public LoginDaoIF getLoginDaoIF() {
@@ -70,7 +80,7 @@ public class LoginBean implements Serializable{
     public void setLoginDaoIF(LoginDaoIF loginDaoIF) {
         this.loginDaoIF = loginDaoIF;
     }
-        
+    
     public Login getLogin() {
         return login;
     }

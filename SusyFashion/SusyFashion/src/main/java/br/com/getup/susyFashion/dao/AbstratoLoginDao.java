@@ -1,6 +1,9 @@
 package br.com.getup.susyFashion.dao;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -33,14 +36,23 @@ public abstract class AbstratoLoginDao<Login> {
         Root<Login> login= c.from(entityClass);
         c.distinct(true).where(cb.equal(login, login));
         
-        c.where(cb.equal(login.get("usuario"), cb.parameter(String.class, "usuario")));
-        c.where(cb.equal(login.get("senha"), cb.parameter(String.class, "senha")));
+        c.where(cb.equal(login.get("usuario"), cb.parameter(String.class, "usuario")),
+                cb.and(cb.equal(login.get("senha"), cb.parameter(String.class, "senha"))));
         
         TypedQuery q = getEntityManager().createQuery(c);
         q.setParameter("usuario", usuario);
         q.setParameter("senha", senha);
-
-        return (Login) q.getSingleResult();
+        
+        Login loginAux = null;
+        try {
+           loginAux  = (Login) q.getSingleResult();
+            
+        } catch (NoResultException nre) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Senha ou Usuário inválidos", ""));
+            System.out.println("Usuário não encontrado");
+        }
+        return loginAux;
     } 
     
 }
