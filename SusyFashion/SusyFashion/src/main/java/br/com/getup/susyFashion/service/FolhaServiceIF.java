@@ -6,11 +6,14 @@
 
 package br.com.getup.susyFashion.service;
 
+import br.com.getup.susyFashion.modelo.Folha;
+import java.util.List;
+
 /**
  *
  * @author E.Wellington
  */
 public interface FolhaServiceIF extends ServiceIF{
   
-    
+    public List<Folha> getFolhaEmAberto();
 }

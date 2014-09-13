@@ -21,21 +21,21 @@ public class FolhaBean extends AbstratoBean {
 
     @Inject
     private FolhaServiceIF folhaServiceIF;
-    
+
     private List<Folha> folhasDoCliente;
-    
+
     private List<Folha> folhasFiltradas;
-    
+
     private String nomeCliente;
-    
+
     public FolhaBean() {
     }
-    
+
     @PostConstruct
     public void init() {
         folhasDoCliente = new ArrayList<>();
     }
-    
+
     @Override
     public ServiceIF getService() {
         return folhaServiceIF;
@@ -55,15 +55,20 @@ public class FolhaBean extends AbstratoBean {
     }
 
     public List<Folha> getFolhasDoCliente() {
-        List<Identificavel> buscarTodos = folhaServiceIF.buscarTodos();
-        
-        List<Folha> listaAuxiliar = new ArrayList<>();
-        
-        for (Identificavel identificavel : buscarTodos) {
-            Folha aux = (Folha) identificavel;
-            listaAuxiliar.add(aux);
-        }
-        setFolhasDoCliente(listaAuxiliar);
+//        List<Identificavel> buscarTodos = folhaServiceIF.buscarTodos();
+//
+//        List<Folha> listaAuxiliar = new ArrayList<>();
+//
+//        for (Identificavel identificavel : buscarTodos) {
+//            Folha aux = (Folha) identificavel;
+//            if (aux.getStatus().equals("aberta")) {
+//                System.out.println(aux.getStatus());
+//                listaAuxiliar.add(aux);
+//            }
+//        }
+//        setFolhasDoCliente(listaAuxiliar);
+        List<Folha> folhaEmAberto = folhaServiceIF.getFolhaEmAberto();
+        setFolhasDoCliente(folhaEmAberto);
         return folhasDoCliente;
     }
 
@@ -86,13 +91,17 @@ public class FolhaBean extends AbstratoBean {
     public void setFolhasFiltradas(List<Folha> folhasFiltradas) {
         this.folhasFiltradas = folhasFiltradas;
     }
-    
+
     //está com problemas
-    public void darBaixaConta(){
-        getEntidade().setStatus("fechada");
-        
-        atualizar();
+    public void darBaixaConta() {
+
+        Long id = getEntidade().getId();
+
+        Folha buscarPorId = (Folha) folhaServiceIF.buscarPorId(id);
+
+        buscarPorId.setStatus("Fechada");
+
+        atualizar(buscarPorId);
     }
-    
-    
+
 }

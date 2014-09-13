@@ -2,9 +2,7 @@ package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
 
-import java.util.List;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 /**
  *
@@ -32,11 +30,13 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
 
     @Override
     public void atualizar(Identificavel entidade) {
-        getEntityManager().refresh(entidade);
+//        Identificavel merge = getEntityManager().merge(entidade);
+        getEntityManager().merge(entidade);
+        
+        
     }
 
     @Override
-//    @Transactional
     public void remover(Identificavel entidade) {
         Identificavel find = getEntityManager().find(entidade.getClass(), entidade.getId());
         getEntityManager().remove(find);

@@ -45,7 +45,7 @@ public class GenericoConversor implements Converter, Serializable {
                 }
 
             }
-            return (String) value;
+            return (String) value.toString();
         }
         return "";
     }

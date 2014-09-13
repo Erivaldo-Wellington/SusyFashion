@@ -35,5 +35,16 @@ public class FolhaDao extends AbstratoDao<Folha> implements FolhaDaoIF {
         return getEntityManager().createQuery("From Folha f").getResultList();
     }
 
-  
+    @Override
+    public List<Folha> getFolhaEmAberto() {
+        Query createQuery = getEntityManager().createQuery("SELECT f FROM Folha f WHERE f.status = :status");
+        createQuery.setParameter("status", "aberta");
+        
+        return createQuery.getResultList();
+        
+        
+    }
+    
+    
+    
 }

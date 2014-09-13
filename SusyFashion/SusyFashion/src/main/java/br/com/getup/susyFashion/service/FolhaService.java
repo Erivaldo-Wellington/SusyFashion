@@ -28,5 +28,10 @@ public class FolhaService extends AbstratoService implements FolhaServiceIF {
         return dao;
     }
     
+    @Override
+    public List<Folha> getFolhaEmAberto(){
+       return  getDao().getFolhaEmAberto();
+        
+    }
 
 }
