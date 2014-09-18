@@ -31,7 +31,7 @@ and open the template in the editor.
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
                         <p:outputLabel value="#{bundle.Value}" for="valor" />
-                        <p:inputMask  id="valor"  mask="9?9999999999" placeHolder="" value="#{saidaBean.entidade.valor}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.ValeuRequired}"/>
+                        <p:inputText  id="valor" styleClass="money" value="#{saidaBean.entidade.valor}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.ValeuRequired}"/>
                         <p:outputLabel value="#{bundle.Date}" for="data" />
                         <p:calendar id="data" value="#{saidaBean.entidade.dataMovimentacao}" title="#{bundle.Date}" navigator="true" required="true" >
                         </p:calendar>                
