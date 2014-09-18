@@ -31,14 +31,14 @@ public abstract class AbstratoBean implements BeanIF{
     
     @Override
     public void salvar() {
-        try {
+//        try {
             getService().salvar(getEntidade());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                FacesMessage.SEVERITY_ERROR, "Erro ao salvar!", ""));
-        }
+            FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
+//        } catch (Exception e) {
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+//                FacesMessage.SEVERITY_ERROR, "Erro ao salvar!", ""));
+//        }
     }
      
     @Override

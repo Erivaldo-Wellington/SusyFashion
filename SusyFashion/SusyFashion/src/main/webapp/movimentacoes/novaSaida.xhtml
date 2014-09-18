@@ -15,8 +15,8 @@ and open the template in the editor.
     <ui:define name="content">
         <p:panel id="nova_saida_form" header="Cadastro de Saídas" style="padding: 20px;">
             <h:form id="NovaSaidaForm" title="Nova Saida">
-                
-                 <!-- Show a gif image to loading ajax user requests -->
+
+                <!-- Show a gif image to loading ajax user requests -->
                 <p:ajaxStatus>
                     <f:facet name="start">
                         <h:graphicImage library="images" name="loading.gif"/>
@@ -26,12 +26,18 @@ and open the template in the editor.
                         <h:outputText value=""/>
                     </f:facet>
                 </p:ajaxStatus>
-                
+
                 <p:growl id="msgNovaSaida" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
+                        
                         <p:outputLabel value="#{bundle.Value}" for="valor" />
-                        <p:inputText  id="valor" styleClass="money" value="#{saidaBean.entidade.valor}" title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.ValeuRequired}"/>
+
+                        <p:inputText  id="valor" value="#{saidaBean.entidade.valor}" title="#{bundle.Number}" styleClass="money"  required="true" requiredMessage="#{bundle.ValeuRequired}">
+
+                            <f:convertNumber type="number" locale="pt_BR" />
+
+                        </p:inputText>
                         <p:outputLabel value="#{bundle.Date}" for="data" />
                         <p:calendar id="data" value="#{saidaBean.entidade.dataMovimentacao}" title="#{bundle.Date}" navigator="true" required="true" >
                         </p:calendar>                

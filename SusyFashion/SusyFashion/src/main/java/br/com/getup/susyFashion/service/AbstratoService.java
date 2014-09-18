@@ -28,11 +28,13 @@ public abstract class AbstratoService implements ServiceIF{
     }
 
     @Override
+    @Transactional
     public void atualizar(Identificavel entidade) {
         getDao().atualizar(entidade);
     }
     
     @Override
+    @Transactional
     public void remover(Identificavel entidade) {
         getDao().remover(entidade);
     }

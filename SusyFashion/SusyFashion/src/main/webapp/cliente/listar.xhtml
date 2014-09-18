@@ -56,9 +56,9 @@ and open the template in the editor.
                     <!--    AÇÃO-->
                     <f:facet name="footer">
                         <p:commandButton process="datatableClientes" update=":listarClienteForm:clienteDetail" 
-                                         icon="ui-icon-search" value="#{bundle.Edit}"
+                                         icon="ui-icon-search" value="#{bundle.Edit}"  
                                          oncomplete="PF('clienteDialog').show()" />
-                        <p:commandButton process="datatableClientes" update="@form" 
+                        <p:commandButton process="datatableClientes" update="datatableClientes" 
                                          icon="ui-icon-close" value="Excluir"
                                          actionListener="#{clienteBean.remover}"
                                          >
@@ -102,8 +102,8 @@ and open the template in the editor.
                                 <f:selectItems itemLabel="#{estado}" itemValue="#{estado}" value="#{clienteBean.estados}" />
                             </p:selectOneMenu>
 
-                            <p:commandButton style="font-size: 13px;" value="#{bundle.Save}" id="btnSalvar"
-                                             update="@form" icon="ui-icon ui-icon-disk" action="#{clienteBean.atualizar}" />
+                            <p:commandButton style="font-size: 13px;" value="#{bundle.Save}" id="btnSalvar" oncomplete="PF('clienteDialog').hide()" 
+                                             update="datatableClientes"  icon="ui-icon ui-icon-disk" action="#{clienteBean.atualizar}" />
 
 
                         </p:panelGrid>
@@ -111,8 +111,8 @@ and open the template in the editor.
                 </p:dialog>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    <p:button value="Sim"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" outcome="/cliente/listar.xhtml" />
+                    <p:button value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" outcome="/cliente/listar.xhtml" />
                 </p:confirmDialog>
 
             </h:form>

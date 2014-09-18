@@ -1,8 +1,6 @@
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Default;
 
 import javax.persistence.EntityManager;
 
