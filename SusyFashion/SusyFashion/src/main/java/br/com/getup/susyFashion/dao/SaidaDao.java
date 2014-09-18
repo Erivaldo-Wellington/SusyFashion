@@ -13,7 +13,6 @@ import javax.persistence.PersistenceContext;
  * @author E.Wellington
  */
 @SaidaDAO
-@Stateless
 public class SaidaDao extends AbstratoDao<Saida> implements SaidaDaoIF{
     
     @PersistenceContext(unitName = "susyFashion")

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -55,18 +57,6 @@ public class FolhaBean extends AbstratoBean {
     }
 
     public List<Folha> getFolhasDoCliente() {
-//        List<Identificavel> buscarTodos = folhaServiceIF.buscarTodos();
-//
-//        List<Folha> listaAuxiliar = new ArrayList<>();
-//
-//        for (Identificavel identificavel : buscarTodos) {
-//            Folha aux = (Folha) identificavel;
-//            if (aux.getStatus().equals("aberta")) {
-//                System.out.println(aux.getStatus());
-//                listaAuxiliar.add(aux);
-//            }
-//        }
-//        setFolhasDoCliente(listaAuxiliar);
         List<Folha> folhaEmAberto = folhaServiceIF.getFolhaEmAberto();
         setFolhasDoCliente(folhaEmAberto);
         return folhasDoCliente;
@@ -100,8 +90,30 @@ public class FolhaBean extends AbstratoBean {
         Folha buscarPorId = (Folha) folhaServiceIF.buscarPorId(id);
 
         buscarPorId.setStatus("Fechada");
+        
+        setEntidade(buscarPorId);
+        atualizar();
+    }
 
-        atualizar(buscarPorId);
+    public boolean salvarFolha() {
+
+        List<Identificavel> buscarTodos = getService().buscarTodos();
+
+        for (Identificavel identificavel : buscarTodos) {
+            Folha aux = (Folha) identificavel;
+            if (aux.getTalao().equals(getEntidade().getTalao())) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                        FacesMessage.SEVERITY_ERROR, "Folha Nº: " + getEntidade().getNumeroFolha()
+                        + " já existe.", ""));
+                return false;
+            }
+        }
+        getService().salvar(getEntidade());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
+
+        return true;
+
     }
 
 }

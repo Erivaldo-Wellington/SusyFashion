@@ -9,8 +9,6 @@ package br.com.getup.susyFashion.service;
 import br.com.getup.susyFashion.dao.ClienteDaoIF;
 import br.com.getup.susyFashion.dao.qualifiers.ClienteDAO;
 import br.com.getup.susyFashion.modelo.Cliente;
-import br.com.getup.susyFashion.modelo.Folha;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

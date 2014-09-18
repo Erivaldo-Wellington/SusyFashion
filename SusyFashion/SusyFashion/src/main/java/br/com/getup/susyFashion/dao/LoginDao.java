@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
  *
  * @author MarkusPatriota
  */
-@RequestScoped
 public class LoginDao extends AbstratoLoginDao<Login> implements LoginDaoIF {
     @PersistenceContext(unitName = "susyFashion")
     private EntityManager em;

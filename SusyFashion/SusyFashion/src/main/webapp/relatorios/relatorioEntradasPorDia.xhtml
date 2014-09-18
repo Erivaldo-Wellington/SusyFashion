@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/susy_template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="content">
+        <p:panel id="relatorio_entradas_form" header="#{bundle.InCashReportByDay}" style="padding: 20px;">
+            <h:form id="RelatorioForm" title="#{bundle.InCashReportByDay}">
+                <p:growl id="msgNovoRegistro" showDetail="true" sticky="true"/>
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="#{bundle.Date}" for="data" />
+                        <p:calendar id="data" value="#{entradaBean.dataEntrada}" title="#{bundle.Date}"  
+                                     required="true" requiredMessage="#{bundle.DateRequired}"/>
+
+                        <p:commandButton action="#{entradaBean.getEntradasPorDia}" value="#{bundle.Search}" 
+                                         update="datatableServices" style="font-size: 14px;"/>
+                        <p:button value="#{bundle.Cancel}" style="font-size: 14px;" outcome="/index.xhtml"/>
+                    </h:panelGrid>
+                </h:panelGroup>
+
+                <p:dataTable id="datatableServices" widgetVar="dtEntradas" value="#{entradaBean.entradasPorDia}" var="entrada"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5"
+                             emptyMessage="#{bundle.NoFoundRecords}" paginator="true" paginatorPosition="bottom" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,20"
+                             >
+
+
+                    <p:column headerText="#{bundle.Id}" style="text-align: center; font-size: 14px;" width="10">
+                        <h:outputText value="#{entrada.id}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Date}" style="text-align: left; font-size: 14px;text-align: center;height: 20px" 
+                              width="200">
+
+
+                        <h:outputText value="#{entrada.dataMovimentacao.time}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Description}" style="text-align: center; font-size: 14px;" width="60">
+                        <h:outputText value="#{entrada.descricao}"/>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Value}" style="text-align: center; font-size: 14px;" width="100">
+                        <h:outputText value="#{entrada.valor}">
+                            <f:convertNumber type="currency" locale="pt_BR"/></h:outputText>
+                    </p:column>
+
+
+
+                    <p:column headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
+                        <p:commandButton id="editButton" title="#{bundle.Edit}" icon="ui-icon ui-icon-pencil" action="#">
+                            <f:setPropertyActionListener target="#{entradaBean.entidade}" value="#{entidade}"/>
+                            <!--<f:param name="cliente" value="#{entrada.id}"/>-->
+                        </p:commandButton>
+                        <p:commandButton id="deleteButton" title="#{bundle.Delete}" icon="ui-icon ui-icon-trash" actionListener="#{entradaBean.remover()}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton id="exportButton" value="#{bundle.Export}" title="#{bundle.Export}"  style="margin-top: 10px" ajax="false">
+                    <p:dataExporter id="imprimir_lista_entradas" target="datatableServices" pageOnly="true" fileName="#{bundle.InCashReportByDay}" type="pdf"/>
+                </p:commandButton>
+
+            </h:form>
+        </p:panel>
+
+
+    </ui:define>
+
+</ui:composition>

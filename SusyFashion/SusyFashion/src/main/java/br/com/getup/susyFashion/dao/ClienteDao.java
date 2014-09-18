@@ -14,7 +14,6 @@ import javax.persistence.Query;
  * @author E.Wellington
  */
 @ClienteDAO
-@Stateless
 public class ClienteDao extends AbstratoDao<Cliente> implements ClienteDaoIF{
     
     @PersistenceContext(unitName = "susyFashion")

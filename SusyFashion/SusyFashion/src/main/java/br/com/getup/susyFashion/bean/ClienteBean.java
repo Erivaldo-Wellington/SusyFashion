@@ -10,12 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.JOptionPane;
-import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -41,7 +37,6 @@ public class ClienteBean extends AbstratoBean {
         this.estados = Arrays.asList(Estados.values());
     }
     
-    private Long IdAux;
     
 
     @PostConstruct
@@ -103,17 +98,6 @@ public class ClienteBean extends AbstratoBean {
     public void setClientesFiltrados(List<Cliente> clientesFiltrados) {
         this.clientesFiltrados = clientesFiltrados;
     }
-
-    public Long getIdAux() {
-        return IdAux;
-    }
-
-    public void setIdAux(Long IdAux) {
-        System.out.println(IdAux);
-        this.IdAux = IdAux;
-    }
-    
-    
     
     
 }

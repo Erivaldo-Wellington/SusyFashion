@@ -20,14 +20,13 @@ and open the template in the editor.
 
                 </h:panelGroup>
 
-                <p:dataTable id="datatableServices" value="#{clienteBean.clientes}" var="cliente"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5"
+                <p:dataTable id="datatableClientes" value="#{clienteBean.clientes}" var="cliente"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5" selectionMode="single"
                              emptyMessage="Nenhum cliente encontrado" paginator="true" paginatorPosition="bottom" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
-                             rowsPerPageTemplate="5,10,20" 
+                             rowsPerPageTemplate="5,10,20" rowKey="#{cliente.id}" selection="#{clienteBean.entidade}"
                              >
-
                     <!--Não vai editar o ID-->
                     <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 14px;" width="10" >
                         <h:outputText value="#{cliente.id}"/>
@@ -54,40 +53,72 @@ and open the template in the editor.
                     </p:column>
 
 
-                    <!--COLUNA AÇÃO-->
-                    <p:column style="width:32px;text-align: center">
-                        <p:commandButton id="btEditar" oncomplete="PF('clienteDialog').show()"  action=""
-                                         icon="ui-icon ui-icon-pencil"   title="#{bundle.Edit}" ajax="false"  >
-                            <!-- Abaixo temos o setPropertyActionListener que é utilizado para pegar o objeto cli e setar no objeto cliente la no nosso bean, para editarmos-->
-                            <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.entidade}" />
+                    <!--    AÇÃO-->
+                    <f:facet name="footer">
+                        <p:commandButton process="datatableClientes" update=":listarClienteForm:clienteDetail" 
+                                         icon="ui-icon-search" value="#{bundle.Edit}"
+                                         oncomplete="PF('clienteDialog').show()" />
+                        <p:commandButton process="datatableClientes" update="@form" 
+                                         icon="ui-icon-close" value="Excluir"
+                                         actionListener="#{clienteBean.remover}"
+                                         >
+                            <p:confirm header="Alerta" message="Tem certeza que deseja excluir esse cliente?" icon="ui-icon-alert" />
                         </p:commandButton>
-
-
-                        <p:commandButton id="deleteButton" title="#{bundle.Delete}" ajax="false" icon="ui-icon ui-icon-trash" action="#{clienteBean.remover}" update="@form">
-                            <f:setPropertyActionListener  target="#{clienteBean.entidade}" value="#{cliente}"/>
-
-                        </p:commandButton>
-
-                    </p:column>
+                    </f:facet>
 
                 </p:dataTable>
 
-
                 <p:dialog header="Editar Cliente" widgetVar="clienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                    <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:outputPanel id="clienteDetail" style="text-align:center;">
                         <p:panelGrid  columns="2" rendered="#{not empty clienteBean.entidade}" columnClasses="label,value">
 
-                            <h:outputText value="Nome" />
-                            <p:inputText value="#{clienteBean.entidade.nome}" placeholder="#{clienteBean.entidade.nome}" />
+                            <p:outputLabel value="Nome"  for="name" />
+                            <p:inputText  id="name" maxlength="50" placeholder="Nome do Produto"
+                                          required="true"  value="#{clienteBean.entidade.nome}"  />
 
-                            <p:commandButton id="botaoAtualizar" action="#{clienteBean.atualizar(cliente)}"/>
+                            <p:outputLabel value="#{bundle.CPF}" for="cpf" />
+                            <p:inputMask id="cpf" value="#{clienteBean.entidade.cpf}" title="#{bundle.CPF}" mask="999.999.999-99" />
+
+                            <p:outputLabel value="#{bundle.RG}" for="rg" />
+                            <p:inputText id="rg" value="#{clienteBean.entidade.rg}" title="#{bundle.RG}" placeholder="Registro Geral"/>
+
+                            <p:outputLabel value="#{bundle.AddressStreet}" for="rua" />
+                            <p:inputText id="rua" value="#{clienteBean.entidade.endereco.rua}" title="#{bundle.AddressStreet}" placeholder="Rua"/>
+
+                            <p:outputLabel value="#{bundle.AddressNumber}" for="numero" />
+                            <p:inputText id="numero" value="#{clienteBean.entidade.endereco.numero}" title="#{bundle.AddressNumber}" placeholder="Número"/>
+
+                            <p:outputLabel value="#{bundle.AddressNeighborhood}" for="bairro" />
+                            <p:inputText id="bairro" value="#{clienteBean.entidade.endereco.bairro}" title="#{bundle.AddressNeighborhood}" placeholder="Bairro"/>
+
+                            <p:outputLabel value="#{bundle.AddressCity}" for="cidade" />
+                            <p:inputText id="cidade" value="#{clienteBean.entidade.endereco.cidade}" title="#{bundle.AddressCity}" placeholder="Cidade"/>
+
+                            <p:outputLabel value="#{bundle.AddressCep}" for="cep" />
+                            <p:inputText id="cep" value="#{clienteBean.entidade.endereco.cep}" title="#{bundle.AddressCep}" placeholder="CEP"/>
+
+                            <p:outputLabel value="#{bundle.AddressState}" for="estado" />
+                            <p:selectOneMenu id="estado" value="#{clienteBean.entidade.endereco.estado}"  effect="fold" >
+                                <f:selectItems itemLabel="#{estado}" itemValue="#{estado}" value="#{clienteBean.estados}" />
+                            </p:selectOneMenu>
+
+                            <p:commandButton style="font-size: 13px;" value="#{bundle.Save}" id="btnSalvar"
+                                             update="@form" icon="ui-icon ui-icon-disk" action="#{clienteBean.atualizar}" />
+
 
                         </p:panelGrid>
                     </p:outputPanel>
                 </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+
             </h:form>
         </p:panel>
 
     </ui:define>
 
 </ui:composition>   
+

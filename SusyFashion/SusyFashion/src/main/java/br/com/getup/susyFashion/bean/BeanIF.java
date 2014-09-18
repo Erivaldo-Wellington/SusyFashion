@@ -12,7 +12,7 @@ public interface BeanIF {
     
     void salvar();
     
-    void atualizar(Identificavel entidade);
+    void atualizar();
     
     void remover();
     

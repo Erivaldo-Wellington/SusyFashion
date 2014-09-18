@@ -15,7 +15,6 @@ import javax.persistence.PersistenceContext;
  * @author E.Wellington
  */
 @EntradaDAO
-@Stateless
 public class EntradaDao extends AbstratoDao<Entrada> implements EntradaDaoIF{
     
     

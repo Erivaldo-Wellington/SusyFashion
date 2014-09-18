@@ -15,7 +15,6 @@ import javax.persistence.Query;
  * @author E.Wellington
  */
 @FolhaDAO
-@Stateless
 public class FolhaDao extends AbstratoDao<Folha> implements FolhaDaoIF {
 
     @PersistenceContext(unitName = "susyFashion")

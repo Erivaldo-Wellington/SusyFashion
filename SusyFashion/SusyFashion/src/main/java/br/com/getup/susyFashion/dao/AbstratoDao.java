@@ -1,6 +1,8 @@
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
 
 import javax.persistence.EntityManager;
 
@@ -9,6 +11,7 @@ import javax.persistence.EntityManager;
  * @author E.Wellington
  * @param <T>
  */
+
 public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
 
     private Class<T> entityClass;
@@ -17,6 +20,9 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
         this.entityClass = entityClass;
     }
 
+    public AbstratoDao(){}
+    
+    @Override
     public abstract EntityManager getEntityManager();
 
     /**
@@ -30,7 +36,6 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
 
     @Override
     public void atualizar(Identificavel entidade) {
-//        Identificavel merge = getEntityManager().merge(entidade);
         getEntityManager().merge(entidade);
         
         
@@ -47,12 +52,4 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
     public Identificavel buscarPorId(Long id) {
         return (Identificavel) getEntityManager().find(entityClass, id);
     }
-
-//    @Override
-//    public List<Identificavel> buscarTodos() {
-//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-//        cq.select(cq.from(entityClass));
-//        return getEntityManager().createQuery(cq).getResultList();
-//               
-//    }
 }
