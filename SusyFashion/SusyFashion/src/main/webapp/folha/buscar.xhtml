@@ -63,14 +63,18 @@ and open the template in the editor.
                     <p:column id="columnAction" headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
                        
                         <p:commandButton id="fecharConta" title="#{bundle.CloseAccount}"  icon="ui-icon ui-icon-locked" action="#{folhaBean.darBaixaConta}" update="@form">
+                            <p:confirm header="Alerta" message="Tem certeza que deseja fechar essa conta?" icon="ui-icon-alert"/> 
                             <f:setPropertyActionListener  target="#{folhaBean.entidade}" value="#{folha}"/>
 
                         </p:commandButton>
-
-
                     </p:column>
 
                 </p:dataTable>
+                
+                  <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:button value="Sim"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" outcome="/folha/buscar.xhtml" />
+                    <p:button value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" outcome="/folha/buscar.xhtml" />
+                </p:confirmDialog>
 
             </h:form>
         </p:panel>
