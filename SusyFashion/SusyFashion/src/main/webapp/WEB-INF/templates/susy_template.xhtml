@@ -42,6 +42,7 @@
                 <p:submenu label="#{bundle.Cadastres}">
                     <p:menuitem value="#{bundle.NewBead}" outcome="/talao/novo"/>
                     <p:menuitem value="#{bundle.NewSheet}" outcome="/folha/nova"/>
+                    <p:menuitem value="#{bundle.NewUser}" outcome="/usuario/novo"/>
                 </p:submenu> 
 
                 <p:submenu label="#{bundle.Cash}">
@@ -66,7 +67,9 @@
                 <p:submenu label="#{bundle.Help}">
                     <p:menuitem value="#{bundle.About}"/>
                     <p:menuitem value="#{bundle.HowToUse}"/>
-                </p:submenu>                 
+                </p:submenu> 
+                
+                <p:menuitem value="Sair" action="#{loginBean.sair}" icon="ui-icon-power"/>
             </p:menubar>
         </h:form>
 

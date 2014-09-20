@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -28,9 +24,8 @@ and open the template in the editor.
                     </f:facet>
                 </p:ajaxStatus>
 
-                <!--<p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>-->
-                <p:message />
                 <h:panelGroup id="display">
+                <p:messages />
                     <h:panelGrid columns="6" cellpadding="4">
                         <p:outputLabel value="#{bundle.Name}" for="nome" />
                         <p:inputText id="nome" value="#{clienteBean.entidade.nome}" title="#{bundle.Name}"  required="true" requiredMessage="#{bundle.NameRequired}"/>
@@ -62,9 +57,9 @@ and open the template in the editor.
                         </p:selectOneMenu>
 
                     </h:panelGrid>
-                    <p:commandButton actionListener="#{clienteBean.salvar}" value="#{bundle.Save}" update="@form"/>
+                <p:commandButton actionListener="#{clienteBean.salvar}" value="#{bundle.Save}" update="@form"/>
                     <p:button value="#{bundle.Cancel}" outcome="/index" />
-                    <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
+                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
                 </h:panelGroup>
             </h:form>
         </p:panel>
