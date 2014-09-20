@@ -65,18 +65,11 @@ and open the template in the editor.
 
 
 
-                    <p:column headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
-                        <p:commandButton id="editButton" title="#{bundle.Edit}" icon="ui-icon ui-icon-pencil" action="#">
-                            <f:setPropertyActionListener target="#{saidaBean.entidade}" value="#{entidade}"/>
-                            <!--<f:param name="cliente" value="#{saida.id}"/>-->
-                        </p:commandButton>
-                        <p:commandButton id="deleteButton" title="#{bundle.Delete}" icon="ui-icon ui-icon-trash" actionListener="#{saidaBean.remover()}"/>
-                    </p:column>
-
+                    
                 </p:dataTable>
 
               <p:commandButton id="exportButton" value="#{bundle.Export}" title="#{bundle.Export}"  style="margin-top: 10px" ajax="false">
-                  <p:dataExporter id="exportar_lista_saidas" target="datatableServices" pageOnly="true" fileName="#{bundle.OutCashReportByPeriod}" type="pdf"/>
+                  <p:dataExporter id="exportar_lista_saidas" encoding="iso-8859-1" target="datatableServices" pageOnly="true" fileName="#{bundle.OutCashReportByPeriod}" type="pdf"/>
                 </p:commandButton>
 
             </h:form>

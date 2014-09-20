@@ -30,7 +30,7 @@ and open the template in the editor.
                 <p:growl id="msgNovaSaida" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
-                        
+
                         <p:outputLabel value="#{bundle.Value}" for="valor" />
 
                         <p:inputText  id="valor" value="#{saidaBean.entidade.valor}" title="#{bundle.Number}" styleClass="money"  required="true" requiredMessage="#{bundle.ValeuRequired}">
@@ -46,7 +46,7 @@ and open the template in the editor.
                     </h:panelGrid>
                     <p:commandButton actionListener="#{saidaBean.salvar()}" value="#{bundle.Save}" update="@form"/>
                     <p:button value="#{bundle.Cancel}" outcome="/index" />
-                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
+                    <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
                 </h:panelGroup>
             </h:form>
         </p:panel>

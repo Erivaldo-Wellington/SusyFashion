@@ -34,7 +34,6 @@ public class ClienteConverter implements Converter, Serializable {
         if (value != null) {
             Long id = new Long(value);
             clienteRetorno = (Cliente) daoService.buscarPorId(id);
-            System.out.println(clienteRetorno.getNome());
         }
         return clienteRetorno;
     }

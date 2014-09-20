@@ -81,7 +81,6 @@ public class EntradaService extends AbstratoService implements EntradaServiceIF 
         for (Identificavel identificavel : buscarTodos) {
             Entrada entradaAux = (Entrada) identificavel;
             
-            System.out.println("Data: "+entradaAux.getDataMovimentacao());
             entradasLista.add(entradaAux);
         }
 

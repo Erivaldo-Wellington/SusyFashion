@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -36,22 +32,36 @@ and open the template in the editor.
                     </h:panelGrid>
                     <p:commandButton actionListener="#{talaoBean.salvarTalao}" value="#{bundle.Save}" update="@form"/>
                     <p:button value="#{bundle.Cancel}" outcome="/index" />
-                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
+                    <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
                 </h:panelGroup>
 
                 <p:dataTable id="datatableTaloes" value="#{talaoBean.listaTalao}" var="talao"
                              paginatorAlwaysVisible="false" style="margin-top: 20px; width: 400px;" rows="5"
                              emptyMessage="Nenhum talão encontrado" paginator="true" paginatorPosition="bottom" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
-                             rowsPerPageTemplate="5,10,20">
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"  selectionMode="single"
+                             rowsPerPageTemplate="5,10,20" rowKey="#{talao.id}" selection="#{talaoBean.entidade}" >
 
                     <p:column headerText="#{bundle.Talon}" style="text-align: center; font-size: 14px;" width="10">
                         <h:outputText value="#{talao.numeroTalao}"/>
                     </p:column>
 
+                    <!--    AÇÃO-->
+                    <f:facet name="footer">
+                        <p:commandButton process="datatableTaloes" update="datatableTaloes" 
+                                         icon="ui-icon-close" value="Excluir"
+                                         actionListener="#{talaoBean.remover}"
+                                         >
+                            <p:confirm header="Alerta" message="Tem certeza que deseja excluir esse cliente?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </f:facet>
                 </p:dataTable>
-
+                
+                 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:button value="Sim"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" outcome="/talao/novo.xhtml" />
+                    <p:button value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" outcome="/talao/novo.xhtml"/>
+                </p:confirmDialog>
+                
             </h:form>
         </p:panel>
 

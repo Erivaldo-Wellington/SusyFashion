@@ -13,7 +13,7 @@ and open the template in the editor.
 
 
     <ui:define name="content">
-  
+
         <p:panel id="novo_cliente_form" header="Cadastro de Clientes" style="padding: 20px;">
             <h:form id="NovoClienteForm" title="Novo Cliente">
 
@@ -28,7 +28,8 @@ and open the template in the editor.
                     </f:facet>
                 </p:ajaxStatus>
 
-                <p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>
+                <!--<p:growl id="msgNovoCliente" showDetail="true" sticky="true"/>-->
+                <p:message />
                 <h:panelGroup id="display">
                     <h:panelGrid columns="6" cellpadding="4">
                         <p:outputLabel value="#{bundle.Name}" for="nome" />

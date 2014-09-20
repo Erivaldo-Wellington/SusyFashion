@@ -46,7 +46,7 @@ and open the template in the editor.
                     </h:panelGrid>
                     <p:commandButton actionListener="#{entradaBean.salvar()}" value="#{bundle.Save}" update="@form"/>
                     <p:button value="#{bundle.Cancel}" outcome="/index" />
-                    <p:commandButton value="#{bundle.Clean}" type="reset"/>
+                   <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
                 </h:panelGroup>
             </h:form>
         </p:panel>

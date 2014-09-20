@@ -50,7 +50,6 @@ public abstract class AbstratoLoginDao<Login> {
         } catch (NoResultException nre) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_ERROR, "Senha ou Usuário inválidos", ""));
-            System.out.println("Usuário não encontrado");
         }
         return loginAux;
     } 

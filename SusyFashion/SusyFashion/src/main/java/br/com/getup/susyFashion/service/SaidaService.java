@@ -80,7 +80,6 @@ public class SaidaService extends AbstratoService implements SaidaServiceIF {
         for (Identificavel identificavel : buscarTodos) {
             Saida saidaAux = (Saida) identificavel;
             
-            System.out.println("Data: "+saidaAux.getDataMovimentacao());
             saidasLista.add(saidaAux);
         }
 

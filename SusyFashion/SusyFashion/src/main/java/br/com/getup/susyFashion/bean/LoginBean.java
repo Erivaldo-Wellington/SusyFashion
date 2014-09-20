@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 
 /**
@@ -28,6 +29,7 @@ public class LoginBean implements Serializable{
         login=new Login();
     }
     
+    @Transactional
     public void cadastro(){
         loginDaoIF.cadastrarLogin(login);
         
@@ -63,7 +65,6 @@ public class LoginBean implements Serializable{
         if(loginAux != null){
             usuarioLogado=true;
             
-            System.out.println("Usuario:"+loginAux.toString());
             return true;
         }else{
             usuarioLogado=false;

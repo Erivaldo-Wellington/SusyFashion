@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -55,7 +51,7 @@ and open the template in the editor.
 
                         <p:commandButton actionListener="#{folhaBean.salvarFolha}" value="#{bundle.Save}" update="@form"/>
                         <p:button value="#{bundle.Cancel}" outcome="/index" />
-                        <p:commandButton value="#{bundle.Clean}" type="reset"/>
+                       <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
 
                     </h:panelGrid>
                 </h:panelGroup>
