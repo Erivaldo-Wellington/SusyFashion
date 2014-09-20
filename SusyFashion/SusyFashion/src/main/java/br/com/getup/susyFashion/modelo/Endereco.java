@@ -1,5 +1,6 @@
 package br.com.getup.susyFashion.modelo;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
@@ -7,7 +8,7 @@ import javax.persistence.Embeddable;
  * @author E.Wellington
  */
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable{
     
     private String rua;
     

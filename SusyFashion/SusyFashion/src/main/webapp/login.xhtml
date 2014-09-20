@@ -11,9 +11,9 @@
         <div id="login">
             <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="300" style="font-size: 14px">
                 <h:form >
-                    <p:growl/>
+                    <p:growl sticky="true"/>
                     <h:inputHidden id="id" value="#{loginBean.login.id}"/>
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <h:panelGrid columns="2" cellpadding="3">
                         <p:outputLabel for="username" value="Usuario: " /> 
                         <p:inputText id="username" required="true" value="#{loginBean.login.usuario}" 
                                      requiredMessage="O usuário deve ser informado"/>

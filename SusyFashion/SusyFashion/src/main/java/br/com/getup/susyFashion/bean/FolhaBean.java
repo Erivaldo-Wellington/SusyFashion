@@ -101,8 +101,14 @@ public class FolhaBean extends AbstratoBean {
 
         for (Identificavel identificavel : buscarTodos) {
             Folha aux = (Folha) identificavel;
-            if ((aux.getTalao().equals(getEntidade().getTalao())) && 
-                    (aux.getNumeroFolha().equals(getEntidade().getNumeroFolha())) ) {
+            long numeroTalaoAux = aux.getTalao().getNumeroTalao();
+            long numeroFolhaAux = aux.getNumeroFolha();
+            
+            long numeroTalaoEntidade = getEntidade().getTalao().getNumeroTalao();
+            long numeroFolhaEntidade = getEntidade().getNumeroFolha();
+            
+            
+            if ( (numeroTalaoAux == numeroTalaoEntidade) && (numeroFolhaAux == numeroFolhaEntidade) ) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                         FacesMessage.SEVERITY_ERROR, "Folha Nº: " + getEntidade().getNumeroFolha()
                         + " já existe.", ""));

@@ -14,7 +14,8 @@
 
 
 
-                <p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>
+                <!--<p:growl id="msgNovaFolha" showDetail="true" sticky="true"/>-->
+                <p:messages/>
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
 
@@ -51,7 +52,7 @@
 
                         <p:commandButton actionListener="#{folhaBean.salvarFolha}" value="#{bundle.Save}" update="@form"/>
                         <p:button value="#{bundle.Cancel}" outcome="/index" />
-                       <p:commandButton value="#{bundle.Clean}" type="reset" update="@form"/>
+                        <p:button value="#{bundle.Clean}" outcome="/folha/nova.xhtml"/>
 
                     </h:panelGrid>
                 </h:panelGroup>
