@@ -25,6 +25,7 @@ public class TalaoBean extends AbstratoBean {
 
     private List<Talao> listaTalao;
     
+    //atributo auxiliar para setar o valor do numero do talao
     private long numeroAuxTalao;
     
     public TalaoBean() {
