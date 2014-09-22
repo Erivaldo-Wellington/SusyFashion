@@ -34,39 +34,39 @@
                 <p:menuitem icon="ui-icon-home" outcome="/index.xhtml"/>
 
                 <p:submenu label="#{bundle.Clients}">
-                    <p:menuitem value="#{bundle.Create}" outcome="/cliente/novo"/>
-                    <p:menuitem value="#{bundle.List}" outcome="/cliente/listar"/>
-                    <p:menuitem value="#{bundle.Search}" outcome="/folha/buscar"/>
+                    <p:menuitem value="#{bundle.Create}" outcome="/cliente/novo" icon="ui-icon-person"/>
+                    <p:menuitem value="#{bundle.List}" outcome="/cliente/listar" icon="ui-icon-script"/>
+                    <p:menuitem value="#{bundle.Search}" outcome="/folha/buscar" icon="ui-icon-search"/>
                 </p:submenu>
 
                 <p:submenu label="#{bundle.Cadastres}">
-                    <p:menuitem value="#{bundle.NewBead}" outcome="/talao/novo"/>
-                    <p:menuitem value="#{bundle.NewSheet}" outcome="/folha/nova"/>
-                    <p:menuitem value="#{bundle.NewUser}" outcome="/usuario/novo"/>
+                    <p:menuitem value="#{bundle.NewBead}" outcome="/talao/novo" icon="ui-icon-note"/>
+                    <p:menuitem value="#{bundle.NewSheet}" outcome="/folha/nova" icon="ui-icon-document"/>
+                    <p:menuitem value="#{bundle.NewUser}" outcome="/usuario/novo" icon="ui-icon-person"/>
                 </p:submenu> 
 
                 <p:submenu label="#{bundle.Cash}">
 
-                    <p:menuitem value="#{bundle.NewEntry}" outcome="/movimentacoes/novaEntrada"/>
-                    <p:menuitem value="#{bundle.NewOutput}"  outcome="/movimentacoes/novaSaida"/>
+                    <p:menuitem value="#{bundle.NewEntry}" outcome="/movimentacoes/novaEntrada" icon="ui-icon-arrowthick-1-e"/>
+                    <p:menuitem value="#{bundle.NewOutput}"  outcome="/movimentacoes/novaSaida" icon="ui-icon-arrowthick-1-w"/>
 
                 </p:submenu>                 
                 <p:submenu label="#{bundle.Reports}">
-                    <p:menuitem value="#{bundle.CashFlow}" outcome="/relatorios/relatorioFluxoCaixa"/>
-                    <p:submenu label="#{bundle.InCash}">
-                        <p:menuitem value="#{bundle.ShowAll}" outcome="/relatorios/relatorioEntradas"/>
-                        <p:menuitem value="#{bundle.InCashReportByDay}" outcome="/relatorios/relatorioEntradasPorDia"/>
-                        <p:menuitem value="#{bundle.InCashReportByPeriod}" outcome="/relatorios/relatorioEntradasPorPeriodo"/>
+                    <p:menuitem value="#{bundle.CashFlow}" outcome="/relatorios/relatorioFluxoCaixa" icon="ui-icon-transferthick-e-w"/>
+                    <p:submenu label="#{bundle.InCash}" icon="ui-icon-arrowthick-1-e">
+                        <p:menuitem value="#{bundle.ShowAll}" outcome="/relatorios/relatorioEntradas" icon="ui-icon-"/>
+                        <p:menuitem value="#{bundle.InCashReportByDay}" outcome="/relatorios/relatorioEntradasPorDia" icon="ui-icon-calculator"/>
+                        <p:menuitem value="#{bundle.InCashReportByPeriod}" outcome="/relatorios/relatorioEntradasPorPeriodo" icon="ui-icon-calculator"/>
                     </p:submenu>                 
-                    <p:submenu label="#{bundle.OutCash}">
-                        <p:menuitem value="#{bundle.ShowAll}" outcome="/relatorios/relatorioSaidas"/>
-                        <p:menuitem value="#{bundle.OutCashReportByDay}" outcome="/relatorios/relatorioSaidasPorDia"/>
-                        <p:menuitem value="#{bundle.OutCashReportByPeriod}" outcome="/relatorios/relatorioSaidasPorPeriodo"/>
+                    <p:submenu label="#{bundle.OutCash}" icon="ui-icon-arrowthick-1-w">
+                        <p:menuitem value="#{bundle.ShowAll}" outcome="/relatorios/relatorioSaidas" icon="ui-icon-"/>
+                        <p:menuitem value="#{bundle.OutCashReportByDay}" outcome="/relatorios/relatorioSaidasPorDia" icon="ui-icon-calculator"/>
+                        <p:menuitem value="#{bundle.OutCashReportByPeriod}" outcome="/relatorios/relatorioSaidasPorPeriodo" icon="ui-icon-calculator"/>
                     </p:submenu>                 
                 </p:submenu>
                 <p:submenu label="#{bundle.Help}">
-                    <p:menuitem value="#{bundle.About}" outcome="/sobre/sobre"/>
-                    <p:menuitem value="#{bundle.HowToUse}"/>
+                    <p:menuitem value="#{bundle.About}" outcome="/sobre/sobre" icon="ui-icon-help"/>
+                    <p:menuitem value="#{bundle.HowToUse} " icon="ui-icon-note"/>
                 </p:submenu> 
                 
                 <p:menuitem value="Sair" action="#{loginBean.sair}" icon="ui-icon-power"/>
