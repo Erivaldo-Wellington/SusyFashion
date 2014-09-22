@@ -24,7 +24,9 @@ public class TalaoBean extends AbstratoBean {
     private TalaoServiceIF talaoServiceIF;
 
     private List<Talao> listaTalao;
-
+    
+    private long numeroAuxTalao;
+    
     public TalaoBean() {
     }
 
@@ -62,17 +64,20 @@ public class TalaoBean extends AbstratoBean {
 
     public boolean salvarTalao() {
 
-        Talao aux = (Talao) getEntidade();
+        List<Identificavel> buscarTodos = getService().buscarTodos();
+        
 
-        List<Talao> listaTalao1 = getListaTalao();
-
-        for (Talao talao : listaTalao1) {
-            if (talao.getNumeroTalao() == aux.getNumeroTalao()) {
+        for (Identificavel identificavel : buscarTodos) {
+            Talao talao = (Talao) identificavel;
+            long numeroTalaoAux = talao.getNumeroTalao();
+            System.out.println(numeroTalaoAux);
+            if ( numeroTalaoAux == getNumeroAuxTalao()) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_ERROR, "Número de Talão já existe", ""));
                 return false;
             }
         }
+        getEntidade().setNumeroTalao(getNumeroAuxTalao());
         getService().salvar(getEntidade());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));
@@ -80,4 +85,17 @@ public class TalaoBean extends AbstratoBean {
         return true;
 
     }
+
+    public void setNumeroAuxTalao(long numeroAuxTalao) {
+        this.numeroAuxTalao = numeroAuxTalao;
+    }
+
+    public long getNumeroAuxTalao() {
+        return numeroAuxTalao;
+    }
+    
+    
+    
+    
+    
 }

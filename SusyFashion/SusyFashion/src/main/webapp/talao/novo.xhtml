@@ -28,7 +28,7 @@
                 <h:panelGroup id="display">
                     <h:panelGrid columns="2" cellpadding="4">
                         <p:outputLabel value="#{bundle.Number}" for="numero" />
-                        <p:inputMask  id="numero"  mask="9?9999999999" placeHolder="" value="#{talaoBean.entidade.numeroTalao}" 
+                        <p:inputText  id="numero"  value="#{talaoBean.numeroAuxTalao}"  type="number" 
                                       title="#{bundle.Number}"  required="true" requiredMessage="#{bundle.NumberRequired}"/>
                     </h:panelGrid>
                     <p:commandButton actionListener="#{talaoBean.salvarTalao}" value="#{bundle.Save}" update="@form"/>
