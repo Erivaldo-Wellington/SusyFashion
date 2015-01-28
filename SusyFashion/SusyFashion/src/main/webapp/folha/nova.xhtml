@@ -38,7 +38,7 @@
                         <p:outputLabel value="#{bundle.Client}:" for="autoCompleteCliente"/>
                         <p:autoComplete id="autoCompleteCliente"
                                         forceSelection="true" 
-                                        minQueryLength="3"
+                                        minQueryLength="1"
                                         value="#{folhaBean.entidade.cliente}" 
                                         completeMethod="#{clienteBean.complete}"
                                         var="cliente" 
@@ -46,7 +46,7 @@
                                         itemValue="#{cliente}" 
                                         converter="generico" 
                                         dropdown="true"
-                                        queryDelay="3000"
+                                        queryDelay="1000"
                                         required="true" >
                         </p:autoComplete>
 

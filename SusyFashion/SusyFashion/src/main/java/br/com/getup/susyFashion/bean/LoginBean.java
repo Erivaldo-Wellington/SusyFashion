@@ -94,4 +94,9 @@ public class LoginBean implements Serializable{
         return usuarioLogado;
     }
     
+    public void cript(String senha){
+        login.setSenha(senha);
+        System.out.println(senha);
+    }
+    
 }
