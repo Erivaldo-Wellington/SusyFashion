@@ -90,7 +90,7 @@ public class FolhaBean extends AbstratoBean {
         Folha buscarPorId = (Folha) folhaServiceIF.buscarPorId(id);
 
         buscarPorId.setStatus("Fechada");
-        
+
         setEntidade(buscarPorId);
         atualizar();
     }
@@ -101,20 +101,29 @@ public class FolhaBean extends AbstratoBean {
 
         for (Identificavel identificavel : buscarTodos) {
             Folha aux = (Folha) identificavel;
-            long numeroTalaoAux = aux.getTalao().getNumeroTalao();
-            long numeroFolhaAux = aux.getNumeroFolha();
-            
-            long numeroTalaoEntidade = getEntidade().getTalao().getNumeroTalao();
-            long numeroFolhaEntidade = getEntidade().getNumeroFolha();
-            
-            
-            if ( (numeroTalaoAux == numeroTalaoEntidade) && (numeroFolhaAux == numeroFolhaEntidade) ) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                        FacesMessage.SEVERITY_ERROR, "Folha Nº: " + getEntidade().getNumeroFolha()
-                        + " já existe.", ""));
-                return false;
+
+            try {
+                long numeroTalaoAux = aux.getTalao().getNumeroTalao();
+                long numeroFolhaAux = aux.getNumeroFolha();
+                long numeroTalaoEntidade = getEntidade().getTalao().getNumeroTalao();
+                long numeroFolhaEntidade = getEntidade().getNumeroFolha();
+
+                if ((numeroTalaoAux == numeroTalaoEntidade) && (numeroFolhaAux == numeroFolhaEntidade)) {
+                    System.out.println("Talão Existe");
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR, "Folha Nº: " + numeroFolhaEntidade
+                            + " já existe.", ""));
+                    return false;
+                }
+
+            } catch (Exception e) {
+
+                System.out.println("EXCECAO " + e.getLocalizedMessage());
+                System.out.println("EXCECAO " + e.getMessage());
             }
+
         }
+
         getService().salvar(getEntidade());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_INFO, "Gravação Efetuada com Sucesso", ""));

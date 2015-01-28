@@ -1,6 +1,8 @@
 package br.com.getup.susyFashion.dao;
 
 import br.com.getup.susyFashion.modelo.Identificavel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 
@@ -12,6 +14,7 @@ import javax.persistence.EntityManager;
 
 public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
 
+    static final Logger logger = Logger.getGlobal();
     private Class<T> entityClass;
 
     public AbstratoDao(Class<T> entityClass) {
@@ -29,7 +32,14 @@ public abstract class AbstratoDao<T extends Identificavel> implements DaoIF {
      */
     @Override
     public void salvar(Identificavel entidade) {
-        getEntityManager().persist(entidade);
+        logger.log(Level.INFO, "SALVAR DAO");
+        try {
+             getEntityManager().persist(entidade);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "SERVICE DAO{0}", e.getMessage());
+        }
+        
+       
     }
 
     @Override

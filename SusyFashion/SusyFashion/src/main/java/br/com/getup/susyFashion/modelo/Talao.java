@@ -25,7 +25,7 @@ public class Talao implements Identificavel {
 
     private long numeroTalao;
 
-    @OneToMany (mappedBy = "talao", targetEntity = Folha.class, fetch = FetchType.LAZY)  
+    @OneToMany (mappedBy = "talao", targetEntity = Folha.class, fetch = FetchType.EAGER)  
     private List<Folha> listaFolhas;
 
     @Override
