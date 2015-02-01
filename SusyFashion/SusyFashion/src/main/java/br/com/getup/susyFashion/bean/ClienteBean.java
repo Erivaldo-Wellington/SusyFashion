@@ -36,12 +36,10 @@ public class ClienteBean extends AbstratoBean {
     public ClienteBean() {
         this.estados = Arrays.asList(Estados.values());
     }
-    
-    
 
     @PostConstruct
     public void init() {
-        clientes = new ArrayList<>();
+        this.clientes = new ArrayList<>();
     }
 
     /**
@@ -73,7 +71,6 @@ public class ClienteBean extends AbstratoBean {
     public void setEntidade(Identificavel entidade) {
         this.entidade = entidade;
     }
-    
 
     // MÉTODOS GETTERS E SETTERS
     public List<Cliente> getClientes() {
@@ -84,6 +81,7 @@ public class ClienteBean extends AbstratoBean {
             Cliente clienteAux = (Cliente) identificavel;
             clientesLista.add(clienteAux);
         }
+        System.out.println(clientesLista);
         return clientesLista;
     }
 
@@ -98,6 +96,5 @@ public class ClienteBean extends AbstratoBean {
     public void setClientesFiltrados(List<Cliente> clientesFiltrados) {
         this.clientesFiltrados = clientesFiltrados;
     }
-    
-    
+
 }

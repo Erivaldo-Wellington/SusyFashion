@@ -13,27 +13,29 @@ and open the template in the editor.
 
 
     <ui:define name="content">
-        <p:panel id="ediar_cliente_form" header="Busca de Clientes" style="padding: 20px;">
+        <p:panel id="ediar_cliente_form" header="Listar clientes cadastrados" style="padding: 20px;">
             <h:form id="listarClienteForm" title="Buscar Cliente">
                 <p:growl id="msgEditarCliente" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
 
                 </h:panelGroup>
 
-                <p:dataTable id="datatableClientes" value="#{clienteBean.clientes}" var="cliente"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5" selectionMode="single"
+                <p:dataTable id="datatableClientes" value="#{clienteBean.clientes}" var="cliente" widgetVar="tabelaCliente"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px;" rows="5" selectionMode="single"
                              emptyMessage="Nenhum cliente encontrado" paginator="true" paginatorPosition="bottom" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"  
-                             rowsPerPageTemplate="5,10,20" rowKey="#{cliente.id}" selection="#{clienteBean.entidade}"
-                             >
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,20, 50,100,200" rowKey="#{cliente.id}" selection="#{clienteBean.entidade}">
+
                     <!--Não vai editar o ID-->
                     <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 14px;" width="10" >
                         <h:outputText value="#{cliente.id}"/>
                     </p:column>
 
                     <!--Coluna NOME-->
-                    <p:column id="columnName" headerText="#{bundle.Name}" style="text-align: left; font-size: 14px;" width="200">
+                    <p:column id="columnName" filterBy="#{cliente.nome}" filterMatchMode="contains"  
+                              style="text-align: left; font-size: 14px;" width="200"
+                              filterStyle="text-align: left; float:left; max-width: 500px; min-width: 300px">
                         <h:outputText value="#{cliente.nome}"/>
                     </p:column>
 
@@ -60,15 +62,14 @@ and open the template in the editor.
                                          oncomplete="PF('clienteDialog').show()" />
                         <p:commandButton process="datatableClientes" update="datatableClientes" 
                                          icon="ui-icon-close" value="Excluir"
-                                         actionListener="#{clienteBean.remover}"
-                                         >
+                                         actionListener="#{clienteBean.remover}">
                             <p:confirm header="Alerta" message="Tem certeza que deseja excluir esse cliente?" icon="ui-icon-alert" />
                         </p:commandButton>
                     </f:facet>
 
                 </p:dataTable>
 
-                <p:dialog header="Editar Cliente" widgetVar="clienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:dialog id="clientDialog" header="Editar Cliente" widgetVar="clienteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="clienteDetail" style="text-align:center;">
                         <p:panelGrid  columns="2" rendered="#{not empty clienteBean.entidade}" columnClasses="label,value">
 
@@ -98,7 +99,7 @@ and open the template in the editor.
                             <p:inputText id="cep" value="#{clienteBean.entidade.endereco.cep}" title="#{bundle.AddressCep}" placeholder="CEP"/>
 
                             <p:outputLabel value="#{bundle.AddressState}" for="estado" />
-                            <p:selectOneMenu id="estado" value="#{clienteBean.entidade.endereco.estado}"  effect="fold" >
+                            <p:selectOneMenu id="estado" value="#{clienteBean.entidade.endereco.estado}"  effect="fold" appendTo="@(body)">
                                 <f:selectItems itemLabel="#{estado}" itemValue="#{estado}" value="#{clienteBean.estados}" />
                             </p:selectOneMenu>
 

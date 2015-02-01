@@ -31,6 +31,7 @@ public class FolhaBean extends AbstratoBean {
     private String nomeCliente;
 
     public FolhaBean() {
+        
     }
 
     @PostConstruct
@@ -93,6 +94,9 @@ public class FolhaBean extends AbstratoBean {
 
         setEntidade(buscarPorId);
         atualizar();
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                FacesMessage.SEVERITY_INFO, "Baixa Efetuada com Sucesso", ""));
     }
 
     public boolean salvarFolha() {

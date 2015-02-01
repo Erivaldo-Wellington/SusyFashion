@@ -43,6 +43,7 @@ public abstract class AbstratoBean implements BeanIF{
      
     @Override
     public void atualizar() {
+        System.out.println("ENTROU O METODO ATUALIZAR()");
         getService().atualizar(getEntidade());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_INFO, "Atualizaçao Efetuada com Sucesso", ""));

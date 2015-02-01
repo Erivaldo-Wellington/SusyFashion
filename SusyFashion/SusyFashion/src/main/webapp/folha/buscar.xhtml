@@ -13,7 +13,7 @@ and open the template in the editor.
 
 
     <ui:define name="content">
-        <p:panel id="listar_folhas_form" header="Listar Clientes" style="padding: 20px;">
+        <p:panel id="listar_folhas_form" header="Buscar clientes associados a talões" style="padding: 20px;">
             <h:form id="listarClienteForm" title="Listar Clientes">
                 <p:growl id="msgListarCliente" showDetail="true" sticky="true"/>
                 <h:panelGroup id="display">
@@ -22,56 +22,62 @@ and open the template in the editor.
 
                 <p:dataTable id="datatableServices" value="#{folhaBean.folhasDoCliente}" 
                              widgetVar="tabelaFolha" var="folha"
-                             paginatorAlwaysVisible="false" style="margin-top: 20px" rows="5"
+                             paginatorAlwaysVisible="false" style="margin-top: 20px;" rows="5"
                              emptyMessage="Nenhum cliente encontrado" paginator="true" paginatorPosition="bottom" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
-                             rowsPerPageTemplate="5,10,20" filteredValue="#{folhaBean.folhasFiltradas}"
+                             rowsPerPageTemplate="5,10,20,50,100, 200" filteredValue="#{folhaBean.folhasFiltradas}"
                              >
 
                     <f:facet name="header">
                         <p:outputPanel>
                             <h:outputText id="outputTextFilter" value="#{bundle.SearchAllFields}:" />
-                            <p:inputText id="globalFilter" onkeyup="PF('tabelaFolha').filter()" style="width:150px" placeholder="#{bundle.EnterHere}"/>
+                            <p:inputText id="globalFilter" onkeyup="PF('tabelaFolha').filter()" style="width:150px" 
+                                         placeholder="#{bundle.EnterHere}"/>
                         </p:outputPanel>
                     </f:facet>
 
-                    <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 14px;" width="10" >
+                    <p:column  id="columnID" headerText="#{bundle.Id}"  style="text-align: center; font-size: 13px;" width="1" >
                         <h:outputText value="#{folha.cliente.id}"/>
                     </p:column>
 
-                    <p:column id="columnName" headerText="#{bundle.Name}" filterBy="#{folha.cliente.nome}"  filterMatchMode="contains" style="text-align: left; font-size: 14px;" width="30">
+                    <p:column id="columnName" headerText="#{bundle.Name}" filterBy="#{folha.cliente.nome}"  
+                              filterMatchMode="contains" style="text-align: left; font-size: 13px;" width="120" >
                         <h:outputText value="#{folha.cliente.nome}"/>
                     </p:column>
 
-                    <p:column id="columnCPF" headerText="#{bundle.CPF}"  style="text-align: center; font-size: 14px;" width="15">
+                    <p:column id="columnCPF" headerText="#{bundle.CPF}"  style="text-align: center; font-size: 13px;" 
+                              width="15" filterBy="#{folha.cliente.cpf}" filterMatchMode="startsWith">
                         <h:outputText value="#{folha.cliente.cpf}"/>
                     </p:column>
 
-                    <p:column id="columnCity" headerText="#{bundle.AddressCity}" filterBy="#{folha.cliente.endereco.cidade}" style="text-align: center; font-size: 14px;" width="25">
+                    <p:column id="columnCity" headerText="#{bundle.AddressCity}" filterBy="#{folha.cliente.endereco.cidade}" 
+                              style="text-align: center; font-size: 13px;" width="70">
                         <h:outputText value="#{folha.cliente.endereco.cidade}"/>
                     </p:column>
 
-                    <p:column id="columnSheet" headerText="#{bundle.Sheet}" style="text-align: center; font-size: 14px;" width="15">
+                    <p:column id="columnSheet" headerText="#{bundle.Sheet}" filterBy="#{folha.numeroFolha}" 
+                              style="text-align: center; font-size: 13px;" width="1" filterStyle="max-width: 40px; min-width: 30px">
                         <h:outputText value="#{folha.numeroFolha}"/>
                     </p:column>
 
-                    <p:column id="columnTalon" headerText="#{bundle.Talon}" filterBy="#{folha.talao.numeroTalao}" style="text-align: center; font-size: 14px;" width="15">
+                    <p:column id="columnTalon" headerText="#{bundle.Talon}" filterBy="#{folha.talao.numeroTalao}" 
+                              style="text-align: center; font-size: 13px;" width="1" filterStyle="max-width: 40px; min-width: 30px">
                         <h:outputText value="#{folha.talao.numeroTalao}"/>
                     </p:column>
 
-                    <p:column id="columnAction" headerText="#{bundle.Actions}" style="text-align: center; font-size: 14px;" width="50">
-                       
-                        <p:commandButton id="fecharConta" title="#{bundle.CloseAccount}"  icon="ui-icon ui-icon-locked" action="#{folhaBean.darBaixaConta}" update="@form">
+                    <p:column id="columnAction" headerText="#{bundle.Actions}" style="text-align: center; font-size: 13px;" 
+                              width="1" >
+                        <p:commandButton id="fecharConta" title="#{bundle.CloseAccount}"  icon="ui-icon ui-icon-locked" 
+                                         action="#{folhaBean.darBaixaConta}" style="font-size: 7px">
                             <p:confirm header="Alerta" message="Tem certeza que deseja fechar essa conta?" icon="ui-icon-alert"/> 
                             <f:setPropertyActionListener  target="#{folhaBean.entidade}" value="#{folha}"/>
-
                         </p:commandButton>
                     </p:column>
 
                 </p:dataTable>
-                
-                  <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                     <p:button value="Sim"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" outcome="/folha/buscar.xhtml" />
                     <p:button value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" outcome="/folha/buscar.xhtml" />
                 </p:confirmDialog>
